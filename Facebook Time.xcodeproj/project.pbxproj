@@ -44,6 +44,7 @@
 		E797F89E25BDAEF400E988DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E797F89D25BDAEF400E988DC /* Main.storyboard */; };
 		E79A4A7525BDFE0200FB8148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E79A4A7425BDFE0200FB8148 /* Assets.xcassets */; };
 		E79A4AD325BE639B00FB8148 /* Extension+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79A4AD225BE639B00FB8148 /* Extension+ViewController.swift */; };
+		E7AA6B5125C98F6E00710FCC /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AA6B5025C98F6E00710FCC /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		E797F89D25BDAEF400E988DC /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E79A4A7425BDFE0200FB8148 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E79A4AD225BE639B00FB8148 /* Extension+ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+ViewController.swift"; sourceTree = "<group>"; };
+		E7AA6B5025C98F6E00710FCC /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,17 +143,14 @@
 		CE2754AB1D79CB3000F2A511 /* Facebook Time */ = {
 			isa = PBXGroup;
 			children = (
+				E7AA6B4F25C98E5400710FCC /* App Manager */,
+				E7AA6B4E25C98E3D00710FCC /* Controller */,
+				E7AA6B4D25C98E1600710FCC /* View */,
+				E7AA6B4C25C98DB800710FCC /* Model */,
 				E79A4AD025BE62F600FB8148 /* Supporting Files */,
 				E79A4ACD25BE62CB00FB8148 /* SQLite Library */,
-				E79A4AC925BE626500FB8148 /* Extensions */,
-				CE0CB4BE1D7DAADC00B6C520 /* AppSettings.swift */,
-				CE2754AC1D79CB3000F2A511 /* AppDelegate.swift */,
-				CE2754AE1D79CB3000F2A511 /* ViewController.swift */,
-				E79A4AD225BE639B00FB8148 /* Extension+ViewController.swift */,
-				CE0CB4CE1D80195F00B6C520 /* ReportViewController.swift */,
-				CE2754B51D79CB3000F2A511 /* LaunchScreen.storyboard */,
+				E79A4AC925BE626500FB8148 /* Apple Extensions */,
 				CE2754B81D79CB3000F2A511 /* Info.plist */,
-				E797F89D25BDAEF400E988DC /* Main.storyboard */,
 			);
 			path = "Facebook Time";
 			sourceTree = "<group>";
@@ -186,14 +185,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E79A4AC925BE626500FB8148 /* Extensions */ = {
+		E79A4AC925BE626500FB8148 /* Apple Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				CE533A3D1D8F69D50080CF6D /* String-Extras.swift */,
-				CE8FBCAE1D7CFFCC00658C86 /* CommonUtilities.swift */,
-				CE0CB4CA1D7F4AD400B6C520 /* RepeatMethods.swift */,
 			);
-			path = Extensions;
+			path = "Apple Extensions";
 			sourceTree = "<group>";
 		};
 		E79A4ACD25BE62CB00FB8148 /* SQLite Library */ = {
@@ -211,6 +208,44 @@
 				E79A4A7425BDFE0200FB8148 /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E7AA6B4C25C98DB800710FCC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE8FBCAE1D7CFFCC00658C86 /* CommonUtilities.swift */,
+				CE0CB4CA1D7F4AD400B6C520 /* RepeatMethods.swift */,
+				E7AA6B5025C98F6E00710FCC /* DataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E7AA6B4D25C98E1600710FCC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE2754B51D79CB3000F2A511 /* LaunchScreen.storyboard */,
+				E797F89D25BDAEF400E988DC /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E7AA6B4E25C98E3D00710FCC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CE0CB4CE1D80195F00B6C520 /* ReportViewController.swift */,
+				CE2754AE1D79CB3000F2A511 /* ViewController.swift */,
+				E79A4AD225BE639B00FB8148 /* Extension+ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E7AA6B4F25C98E5400710FCC /* App Manager */ = {
+			isa = PBXGroup;
+			children = (
+				CE0CB4BE1D7DAADC00B6C520 /* AppSettings.swift */,
+				CE2754AC1D79CB3000F2A511 /* AppDelegate.swift */,
+			);
+			path = "App Manager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +379,7 @@
 			files = (
 				CE0CB4CF1D80195F00B6C520 /* ReportViewController.swift in Sources */,
 				CE533A3F1D8F69D50080CF6D /* SQLTable.swift in Sources */,
+				E7AA6B5125C98F6E00710FCC /* DataModel.swift in Sources */,
 				E79A4AD325BE639B00FB8148 /* Extension+ViewController.swift in Sources */,
 				CE8FBCAF1D7CFFCC00658C86 /* CommonUtilities.swift in Sources */,
 				CE0CB4CB1D7F4AD400B6C520 /* RepeatMethods.swift in Sources */,

@@ -19,24 +19,22 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         
         var pickerValues: Int = 0
         if component == 0 {
-            pickerValues = hoursPickerValues.count
+            pickerValues = DataModel.hoursPickerValues.count
             return pickerValues
         } else {
-            pickerValues = minutesPickerValues.count
+            pickerValues = DataModel.minutesPickerValues.count
             return pickerValues
         }
-        
-        return pickerValues
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
         var attributedString: NSAttributedString!
         if component == 0 {
-            attributedString = NSAttributedString(string: hoursPickerValues[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
+            attributedString = NSAttributedString(string: DataModel.hoursPickerValues[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
             return attributedString
         } else {
-            attributedString = NSAttributedString(string: minutesPickerValues[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
+            attributedString = NSAttributedString(string: DataModel.minutesPickerValues[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
             return attributedString
         }
         return attributedString
@@ -46,7 +44,7 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         
         if component == 0 {
             //For hour.
-            let selectedHour = hoursPickerValues[row]
+            let selectedHour = DataModel.hoursPickerValues[row]
             let hourInInt: Int = row
             _ = AppSettings.shared.db.execute(sql: "UPDATE settings SET value='\(selectedHour)' WHERE key='setHours'")
             _ = AppSettings.shared.db.execute(sql: "UPDATE settings SET value='\(hourInInt)' WHERE key='setHoursInt'")
@@ -66,7 +64,7 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             //print(dailySocialTime)
         } else {
             //For minutes
-            let selectedMinutes = minutesPickerValues[row]
+            let selectedMinutes = DataModel.minutesPickerValues[row]
             let minutesInInt: Int = row
             _ = AppSettings.shared.db.execute(sql: "UPDATE settings SET value='\(selectedMinutes)' WHERE key='setMinutes'")
             _ = AppSettings.shared.db.execute(sql: "UPDATE settings SET value='\(minutesInInt)' WHERE key='setMinutesInt'")

@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //let mainDirectoryURL: NSURL = NSURL.fileURLWithPath(path)
             let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
             
-            var fileNames = ["Facebook-Icon.png", "style.css"]
+            let fileNames = ["Facebook-Icon.png", "style.css"]
             
             for indexA in 0 ..< fileNames.count  {
                 let getImagePathForMainPath = mainPath.stringByAppendingPathComponent(fileNames[indexA])

@@ -7,44 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE0CB4BF1D7DAADC00B6C520 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CB4BE1D7DAADC00B6C520 /* AppSettings.swift */; };
-		CE0CB4C51D7DAEF300B6C520 /* facebook-time-v-1-build1.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = CE0CB4C41D7DAEF300B6C520 /* facebook-time-v-1-build1.sqlite */; };
-		CE0CB4CB1D7F4AD400B6C520 /* RepeatMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CB4CA1D7F4AD400B6C520 /* RepeatMethods.swift */; };
-		CE0CB4CF1D80195F00B6C520 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CB4CE1D80195F00B6C520 /* ReportViewController.swift */; };
 		CE2754AD1D79CB3000F2A511 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2754AC1D79CB3000F2A511 /* AppDelegate.swift */; };
-		CE2754AF1D79CB3000F2A511 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2754AE1D79CB3000F2A511 /* ViewController.swift */; };
 		CE2754B71D79CB3000F2A511 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2754B51D79CB3000F2A511 /* LaunchScreen.storyboard */; };
-		CE533A3E1D8F69D50080CF6D /* SQLiteDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE533A3B1D8F69D50080CF6D /* SQLiteDB.swift */; };
-		CE533A3F1D8F69D50080CF6D /* SQLTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE533A3C1D8F69D50080CF6D /* SQLTable.swift */; };
-		CE533A401D8F69D50080CF6D /* String-Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE533A3D1D8F69D50080CF6D /* String-Extras.swift */; };
-		CE8FBCAF1D7CFFCC00658C86 /* CommonUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FBCAE1D7CFFCC00658C86 /* CommonUtilities.swift */; };
-		E797F89E25BDAEF400E988DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E797F89D25BDAEF400E988DC /* Main.storyboard */; };
+		CE37313D2CA45CAA0042E9CA /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37313C2CA45CAA0042E9CA /* AlertManager.swift */; };
+		CE5C69E92CA1BF2000FC3715 /* SurfingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C69E82CA1BF2000FC3715 /* SurfingViewController.swift */; };
+		CE5C69EB2CA1BF5C00FC3715 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C69EA2CA1BF5C00FC3715 /* TopView.swift */; };
+		CE5C69ED2CA1BF9D00FC3715 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C69EC2CA1BF9D00FC3715 /* BottomView.swift */; };
+		CE752F212CA6C32E00AEC2A7 /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE752F202CA6C32E00AEC2A7 /* ReportModel.swift */; };
+		CE752F232CA6C36E00AEC2A7 /* ReportGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE752F222CA6C36E00AEC2A7 /* ReportGraphView.swift */; };
+		CE752F252CA6C61E00AEC2A7 /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE752F242CA6C61E00AEC2A7 /* TimerModel.swift */; };
+		CEDC55162CA5E952008FEC95 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC55152CA5E952008FEC95 /* ReportViewController.swift */; };
+		CEFF4ACD2CA4369C00A803F2 /* TimerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF4ACC2CA4369C00A803F2 /* TimerPickerView.swift */; };
 		E79A4A7525BDFE0200FB8148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E79A4A7425BDFE0200FB8148 /* Assets.xcassets */; };
-		E79A4AD325BE639B00FB8148 /* Extension+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79A4AD225BE639B00FB8148 /* Extension+ViewController.swift */; };
-		E7AA6B5125C98F6E00710FCC /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AA6B5025C98F6E00710FCC /* DataModel.swift */; };
-		E7F10D6525C99525007345FC /* previos-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D5E25C99525007345FC /* previos-thin.png */; };
-		E7F10D6625C99525007345FC /* back-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D5F25C99525007345FC /* back-thin.png */; };
-		E7F10D6725C99525007345FC /* Alarm-3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D6025C99525007345FC /* Alarm-3.mp3 */; };
-		E7F10D6825C99525007345FC /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D6125C99525007345FC /* style.css */; };
-		E7F10D6925C99525007345FC /* delete-black-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D6225C99525007345FC /* delete-black-thin.png */; };
-		E7F10D6A25C99525007345FC /* Facebook-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D6325C99525007345FC /* Facebook-Icon.png */; };
-		E7F10D6B25C99525007345FC /* next-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D6425C99525007345FC /* next-thin.png */; };
-		E7F10D7F25C99549007345FC /* backward-disable-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D6F25C99549007345FC /* backward-disable-thin.png */; };
-		E7F10D8025C99549007345FC /* facebook-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7025C99549007345FC /* facebook-thin.png */; };
-		E7F10D8125C99549007345FC /* report-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7125C99549007345FC /* report-thin.png */; };
-		E7F10D8225C99549007345FC /* rate-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7225C99549007345FC /* rate-thin.png */; };
-		E7F10D8325C99549007345FC /* feedback-black-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7325C99549007345FC /* feedback-black-thin.png */; };
-		E7F10D8425C99549007345FC /* backward-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7425C99549007345FC /* backward-thin.png */; };
-		E7F10D8525C99549007345FC /* forward-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7525C99549007345FC /* forward-thin.png */; };
-		E7F10D8625C99549007345FC /* forward-disable-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7625C99549007345FC /* forward-disable-thin.png */; };
-		E7F10D8725C99549007345FC /* stop-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7725C99549007345FC /* stop-thin.png */; };
-		E7F10D8825C99549007345FC /* timer-black-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7825C99549007345FC /* timer-black-thin.png */; };
-		E7F10D8925C99549007345FC /* settings-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7925C99549007345FC /* settings-thin.png */; };
-		E7F10D8A25C99549007345FC /* share-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7A25C99549007345FC /* share-thin.png */; };
-		E7F10D8B25C99549007345FC /* contact-us-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7B25C99549007345FC /* contact-us-thin.png */; };
-		E7F10D8C25C99549007345FC /* share-disable-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7C25C99549007345FC /* share-disable-thin.png */; };
-		E7F10D8D25C99549007345FC /* refresh-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7D25C99549007345FC /* refresh-thin.png */; };
-		E7F10D8E25C99549007345FC /* home-thin.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F10D7E25C99549007345FC /* home-thin.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,48 +32,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CE0CB4BE1D7DAADC00B6C520 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
-		CE0CB4C41D7DAEF300B6C520 /* facebook-time-v-1-build1.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "facebook-time-v-1-build1.sqlite"; sourceTree = "<group>"; };
-		CE0CB4CA1D7F4AD400B6C520 /* RepeatMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatMethods.swift; sourceTree = "<group>"; };
-		CE0CB4CE1D80195F00B6C520 /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		CE2754A91D79CB3000F2A511 /* Facebook Time.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Facebook Time.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2754AC1D79CB3000F2A511 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE2754AE1D79CB3000F2A511 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE2754B61D79CB3000F2A511 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE2754B81D79CB3000F2A511 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE2754BD1D79CB3000F2A511 /* Facebook TimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Facebook TimeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE533A3B1D8F69D50080CF6D /* SQLiteDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDB.swift; sourceTree = "<group>"; };
-		CE533A3C1D8F69D50080CF6D /* SQLTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLTable.swift; sourceTree = "<group>"; };
-		CE533A3D1D8F69D50080CF6D /* String-Extras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String-Extras.swift"; sourceTree = "<group>"; };
-		CE8FBCAE1D7CFFCC00658C86 /* CommonUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtilities.swift; sourceTree = "<group>"; };
-		E797F89D25BDAEF400E988DC /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		CE37313C2CA45CAA0042E9CA /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		CE5C69E82CA1BF2000FC3715 /* SurfingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingViewController.swift; sourceTree = "<group>"; };
+		CE5C69EA2CA1BF5C00FC3715 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
+		CE5C69EC2CA1BF9D00FC3715 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		CE752F202CA6C32E00AEC2A7 /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
+		CE752F222CA6C36E00AEC2A7 /* ReportGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportGraphView.swift; sourceTree = "<group>"; };
+		CE752F242CA6C61E00AEC2A7 /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
+		CEDC55152CA5E952008FEC95 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		CEFF4ACC2CA4369C00A803F2 /* TimerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPickerView.swift; sourceTree = "<group>"; };
 		E79A4A7425BDFE0200FB8148 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E79A4AD225BE639B00FB8148 /* Extension+ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+ViewController.swift"; sourceTree = "<group>"; };
-		E7AA6B5025C98F6E00710FCC /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		E7F10D5E25C99525007345FC /* previos-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "previos-thin.png"; sourceTree = "<group>"; };
-		E7F10D5F25C99525007345FC /* back-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-thin.png"; sourceTree = "<group>"; };
-		E7F10D6025C99525007345FC /* Alarm-3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alarm-3.mp3"; sourceTree = "<group>"; };
-		E7F10D6125C99525007345FC /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
-		E7F10D6225C99525007345FC /* delete-black-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete-black-thin.png"; sourceTree = "<group>"; };
-		E7F10D6325C99525007345FC /* Facebook-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Facebook-Icon.png"; sourceTree = "<group>"; };
-		E7F10D6425C99525007345FC /* next-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next-thin.png"; sourceTree = "<group>"; };
-		E7F10D6F25C99549007345FC /* backward-disable-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backward-disable-thin.png"; sourceTree = "<group>"; };
-		E7F10D7025C99549007345FC /* facebook-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-thin.png"; sourceTree = "<group>"; };
-		E7F10D7125C99549007345FC /* report-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "report-thin.png"; sourceTree = "<group>"; };
-		E7F10D7225C99549007345FC /* rate-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rate-thin.png"; sourceTree = "<group>"; };
-		E7F10D7325C99549007345FC /* feedback-black-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback-black-thin.png"; sourceTree = "<group>"; };
-		E7F10D7425C99549007345FC /* backward-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backward-thin.png"; sourceTree = "<group>"; };
-		E7F10D7525C99549007345FC /* forward-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward-thin.png"; sourceTree = "<group>"; };
-		E7F10D7625C99549007345FC /* forward-disable-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward-disable-thin.png"; sourceTree = "<group>"; };
-		E7F10D7725C99549007345FC /* stop-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop-thin.png"; sourceTree = "<group>"; };
-		E7F10D7825C99549007345FC /* timer-black-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timer-black-thin.png"; sourceTree = "<group>"; };
-		E7F10D7925C99549007345FC /* settings-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-thin.png"; sourceTree = "<group>"; };
-		E7F10D7A25C99549007345FC /* share-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share-thin.png"; sourceTree = "<group>"; };
-		E7F10D7B25C99549007345FC /* contact-us-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact-us-thin.png"; sourceTree = "<group>"; };
-		E7F10D7C25C99549007345FC /* share-disable-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share-disable-thin.png"; sourceTree = "<group>"; };
-		E7F10D7D25C99549007345FC /* refresh-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh-thin.png"; sourceTree = "<group>"; };
-		E7F10D7E25C99549007345FC /* home-thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-thin.png"; sourceTree = "<group>"; };
-		E7F10D9925C996F3007345FC /* Facebook Time-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Facebook Time-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,112 +87,53 @@
 		CE2754AB1D79CB3000F2A511 /* Facebook Time */ = {
 			isa = PBXGroup;
 			children = (
-				E7AA6B4F25C98E5400710FCC /* App Manager */,
-				E7AA6B4E25C98E3D00710FCC /* Controller */,
-				E7AA6B4D25C98E1600710FCC /* View */,
-				E7AA6B4C25C98DB800710FCC /* Model */,
-				E79A4AD025BE62F600FB8148 /* Supporting Files */,
-				E79A4ACD25BE62CB00FB8148 /* SQLite Library */,
-				E79A4AC925BE626500FB8148 /* Apple Extensions */,
+				E7AA6B4F25C98E5400710FCC /* App Managers */,
+				E7AA6B4E25C98E3D00710FCC /* Controllers */,
+				E7AA6B4D25C98E1600710FCC /* Views */,
+				E7AA6B4C25C98DB800710FCC /* Models */,
+				E79A4A7425BDFE0200FB8148 /* Assets.xcassets */,
 				CE2754B81D79CB3000F2A511 /* Info.plist */,
 			);
 			path = "Facebook Time";
 			sourceTree = "<group>";
 		};
-		E79A4AC925BE626500FB8148 /* Apple Extensions */ = {
+		E7AA6B4C25C98DB800710FCC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CE533A3D1D8F69D50080CF6D /* String-Extras.swift */,
+				CE752F202CA6C32E00AEC2A7 /* ReportModel.swift */,
+				CE752F242CA6C61E00AEC2A7 /* TimerModel.swift */,
 			);
-			path = "Apple Extensions";
+			path = Models;
 			sourceTree = "<group>";
 		};
-		E79A4ACD25BE62CB00FB8148 /* SQLite Library */ = {
-			isa = PBXGroup;
-			children = (
-				CE0CB4C41D7DAEF300B6C520 /* facebook-time-v-1-build1.sqlite */,
-				CE533A3B1D8F69D50080CF6D /* SQLiteDB.swift */,
-				CE533A3C1D8F69D50080CF6D /* SQLTable.swift */,
-			);
-			path = "SQLite Library";
-			sourceTree = "<group>";
-		};
-		E79A4AD025BE62F600FB8148 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E7F10D6E25C99549007345FC /* Images */,
-				E7F10D6025C99525007345FC /* Alarm-3.mp3 */,
-				E7F10D5F25C99525007345FC /* back-thin.png */,
-				E7F10D6225C99525007345FC /* delete-black-thin.png */,
-				E7F10D6325C99525007345FC /* Facebook-Icon.png */,
-				E7F10D6425C99525007345FC /* next-thin.png */,
-				E7F10D5E25C99525007345FC /* previos-thin.png */,
-				E7F10D6125C99525007345FC /* style.css */,
-				E79A4A7425BDFE0200FB8148 /* Assets.xcassets */,
-			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E7AA6B4C25C98DB800710FCC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				CE8FBCAE1D7CFFCC00658C86 /* CommonUtilities.swift */,
-				CE0CB4CA1D7F4AD400B6C520 /* RepeatMethods.swift */,
-				E7AA6B5025C98F6E00710FCC /* DataModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		E7AA6B4D25C98E1600710FCC /* View */ = {
+		E7AA6B4D25C98E1600710FCC /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				CE2754B51D79CB3000F2A511 /* LaunchScreen.storyboard */,
-				E797F89D25BDAEF400E988DC /* Main.storyboard */,
+				CE5C69EA2CA1BF5C00FC3715 /* TopView.swift */,
+				CE5C69EC2CA1BF9D00FC3715 /* BottomView.swift */,
+				CEFF4ACC2CA4369C00A803F2 /* TimerPickerView.swift */,
+				CE752F222CA6C36E00AEC2A7 /* ReportGraphView.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		E7AA6B4E25C98E3D00710FCC /* Controller */ = {
+		E7AA6B4E25C98E3D00710FCC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CE0CB4CE1D80195F00B6C520 /* ReportViewController.swift */,
-				CE2754AE1D79CB3000F2A511 /* ViewController.swift */,
-				E79A4AD225BE639B00FB8148 /* Extension+ViewController.swift */,
+				CE5C69E82CA1BF2000FC3715 /* SurfingViewController.swift */,
+				CEDC55152CA5E952008FEC95 /* ReportViewController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		E7AA6B4F25C98E5400710FCC /* App Manager */ = {
+		E7AA6B4F25C98E5400710FCC /* App Managers */ = {
 			isa = PBXGroup;
 			children = (
-				E7F10D9925C996F3007345FC /* Facebook Time-Bridging-Header.h */,
-				CE0CB4BE1D7DAADC00B6C520 /* AppSettings.swift */,
 				CE2754AC1D79CB3000F2A511 /* AppDelegate.swift */,
+				CE37313C2CA45CAA0042E9CA /* AlertManager.swift */,
 			);
-			path = "App Manager";
-			sourceTree = "<group>";
-		};
-		E7F10D6E25C99549007345FC /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				E7F10D6F25C99549007345FC /* backward-disable-thin.png */,
-				E7F10D7025C99549007345FC /* facebook-thin.png */,
-				E7F10D7125C99549007345FC /* report-thin.png */,
-				E7F10D7225C99549007345FC /* rate-thin.png */,
-				E7F10D7325C99549007345FC /* feedback-black-thin.png */,
-				E7F10D7425C99549007345FC /* backward-thin.png */,
-				E7F10D7525C99549007345FC /* forward-thin.png */,
-				E7F10D7625C99549007345FC /* forward-disable-thin.png */,
-				E7F10D7725C99549007345FC /* stop-thin.png */,
-				E7F10D7825C99549007345FC /* timer-black-thin.png */,
-				E7F10D7925C99549007345FC /* settings-thin.png */,
-				E7F10D7A25C99549007345FC /* share-thin.png */,
-				E7F10D7B25C99549007345FC /* contact-us-thin.png */,
-				E7F10D7C25C99549007345FC /* share-disable-thin.png */,
-				E7F10D7D25C99549007345FC /* refresh-thin.png */,
-				E7F10D7E25C99549007345FC /* home-thin.png */,
-			);
-			path = Images;
+			path = "App Managers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,33 +221,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7F10D8D25C99549007345FC /* refresh-thin.png in Resources */,
-				E7F10D6625C99525007345FC /* back-thin.png in Resources */,
-				E7F10D7F25C99549007345FC /* backward-disable-thin.png in Resources */,
-				E7F10D8E25C99549007345FC /* home-thin.png in Resources */,
-				E7F10D6A25C99525007345FC /* Facebook-Icon.png in Resources */,
-				E7F10D6925C99525007345FC /* delete-black-thin.png in Resources */,
 				CE2754B71D79CB3000F2A511 /* LaunchScreen.storyboard in Resources */,
-				E7F10D8425C99549007345FC /* backward-thin.png in Resources */,
-				E7F10D8625C99549007345FC /* forward-disable-thin.png in Resources */,
-				E7F10D6B25C99525007345FC /* next-thin.png in Resources */,
-				E7F10D8725C99549007345FC /* stop-thin.png in Resources */,
-				E7F10D8525C99549007345FC /* forward-thin.png in Resources */,
-				E7F10D8A25C99549007345FC /* share-thin.png in Resources */,
-				E7F10D8225C99549007345FC /* rate-thin.png in Resources */,
-				E7F10D8325C99549007345FC /* feedback-black-thin.png in Resources */,
-				CE0CB4C51D7DAEF300B6C520 /* facebook-time-v-1-build1.sqlite in Resources */,
-				E7F10D8B25C99549007345FC /* contact-us-thin.png in Resources */,
-				E7F10D8C25C99549007345FC /* share-disable-thin.png in Resources */,
-				E7F10D8925C99549007345FC /* settings-thin.png in Resources */,
 				E79A4A7525BDFE0200FB8148 /* Assets.xcassets in Resources */,
-				E797F89E25BDAEF400E988DC /* Main.storyboard in Resources */,
-				E7F10D8825C99549007345FC /* timer-black-thin.png in Resources */,
-				E7F10D8125C99549007345FC /* report-thin.png in Resources */,
-				E7F10D6825C99525007345FC /* style.css in Resources */,
-				E7F10D6725C99525007345FC /* Alarm-3.mp3 in Resources */,
-				E7F10D8025C99549007345FC /* facebook-thin.png in Resources */,
-				E7F10D6525C99525007345FC /* previos-thin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,17 +240,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE0CB4CF1D80195F00B6C520 /* ReportViewController.swift in Sources */,
-				CE533A3F1D8F69D50080CF6D /* SQLTable.swift in Sources */,
-				E7AA6B5125C98F6E00710FCC /* DataModel.swift in Sources */,
-				E79A4AD325BE639B00FB8148 /* Extension+ViewController.swift in Sources */,
-				CE8FBCAF1D7CFFCC00658C86 /* CommonUtilities.swift in Sources */,
-				CE0CB4CB1D7F4AD400B6C520 /* RepeatMethods.swift in Sources */,
-				CE533A401D8F69D50080CF6D /* String-Extras.swift in Sources */,
-				CE2754AF1D79CB3000F2A511 /* ViewController.swift in Sources */,
+				CE752F252CA6C61E00AEC2A7 /* TimerModel.swift in Sources */,
+				CE37313D2CA45CAA0042E9CA /* AlertManager.swift in Sources */,
+				CEFF4ACD2CA4369C00A803F2 /* TimerPickerView.swift in Sources */,
+				CE5C69EB2CA1BF5C00FC3715 /* TopView.swift in Sources */,
+				CE5C69E92CA1BF2000FC3715 /* SurfingViewController.swift in Sources */,
 				CE2754AD1D79CB3000F2A511 /* AppDelegate.swift in Sources */,
-				CE0CB4BF1D7DAADC00B6C520 /* AppSettings.swift in Sources */,
-				CE533A3E1D8F69D50080CF6D /* SQLiteDB.swift in Sources */,
+				CE752F212CA6C32E00AEC2A7 /* ReportModel.swift in Sources */,
+				CEDC55162CA5E952008FEC95 /* ReportViewController.swift in Sources */,
+				CE5C69ED2CA1BF9D00FC3715 /* BottomView.swift in Sources */,
+				CE752F232CA6C36E00AEC2A7 /* ReportGraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +408,8 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Facebook Time/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = (
@@ -556,7 +419,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appworld1.Facebook-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Facebook Time/App Manager/Facebook Time-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -577,7 +439,8 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Facebook Time/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = (
@@ -587,7 +450,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appworld1.Facebook-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Facebook Time/App Manager/Facebook Time-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

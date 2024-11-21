@@ -215,7 +215,7 @@ extension SurfingViewController: BottomViewDelegate {
     func bottomView(_ bottomView: BottomView, didTapButtonWith tag: Int) {
         switch tag {
         case 1: // Refresh button tapped
-            webView.reload()
+            handleRefreshButton()
         case 2: // Home button tapped
             loadWebContent()
         case 3: // Back button tapped
@@ -232,13 +232,21 @@ extension SurfingViewController: BottomViewDelegate {
         }
     }
     
+    private func handleRefreshButton() {
+        if timerModel.isTimerSetForToday() && timerModel.remainingTime > 0 {
+            webView.reload()
+        }
+    }
+    
     private func handleBackButton() {
-        // Check if the webView can go back in the browsing history
-        if webView.canGoBack {
-            webView.goBack() // Navigate to the previous page in the webView's history
-        } else {
-            // If there's no history to go back to, show an alert or take an alternative action
-            AlertManager.showNoHistoryAlert(on: self) // This can be a custom alert method to notify the user
+        if timerModel.isTimerSetForToday() && timerModel.remainingTime > 0 {
+            // Check if the webView can go back in the browsing history
+            if webView.canGoBack {
+                webView.goBack() // Navigate to the previous page in the webView's history
+            } else {
+                // If there's no history to go back to, show an alert or take an alternative action
+                AlertManager.showNoHistoryAlert(on: self) // This can be a custom alert method to notify the user
+            }
         }
     }
     

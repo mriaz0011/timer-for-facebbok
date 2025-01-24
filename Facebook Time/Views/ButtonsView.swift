@@ -12,7 +12,7 @@ class ButtonsView: UIView {
     
     // MARK: - Properties
     
-    weak var delegate: BottomViewDelegate?
+    weak var delegate: ButtonsViewDelegate?
     
     // MARK: - Initialization
     
@@ -29,52 +29,59 @@ class ButtonsView: UIView {
     // MARK: - Setup
     
     private func setupView() {
-        self.backgroundColor = .orange
+        backgroundColor = AppConfiguration.UI.Colors.navigationBar
         
-        // Buttons for refresh, home, back, share, timer, and report
-        let refreshButton = createButton(withImage: UIImage(systemName: "arrow.clockwise"), tag: 1)
-        let homeButton = createButton(withImage: UIImage(systemName: "house"), tag: 2)
-        let backButton = createButton(withImage: UIImage(systemName: "chevron.backward"), tag: 3)
-        let shareButton = createButton(withImage: UIImage(systemName: "square.and.arrow.up"), tag: 4)
-        let timerButton = createButton(withImage: UIImage(systemName: "timer"), tag: 5)
-        let reportButton = createButton(withImage: UIImage(systemName: "doc.text.magnifyingglass"), tag: 6)
+        let backButton = createButton(withImage: UIImage(systemName: "chevron.backward"), action: #selector(backButtonTapped))
+        let homeButton = createButton(withImage: UIImage(systemName: "house"), action: #selector(homeButtonTapped))
+        let refreshButton = createButton(withImage: UIImage(systemName: "arrow.clockwise"), action: #selector(refreshButtonTapped))
+        let shareButton = createButton(withImage: UIImage(systemName: "square.and.arrow.up"), action: #selector(shareButtonTapped))
+        let reportButton = createButton(withImage: UIImage(systemName: "exclamationmark.triangle"), action: #selector(reportButtonTapped))
+        let timerPickerButton = createButton(withImage: UIImage(systemName: "timer"), action: #selector(timerPickerButtonTapped))
         
-        // Add the buttons to a horizontal stack view
-        let buttonStackView = UIStackView(arrangedSubviews: [refreshButton, homeButton, backButton, shareButton, timerButton, reportButton])
-        buttonStackView.axis = .horizontal
-        buttonStackView.alignment = .fill
-        buttonStackView.distribution = .equalSpacing
-        buttonStackView.spacing = 20
-        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(buttonStackView)
+        let stackView = UIStackView(arrangedSubviews: [backButton, homeButton, refreshButton, timerPickerButton, shareButton, reportButton])
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        // Constraints for the button stack view
+        addSubview(stackView)
+        
         NSLayoutConstraint.activate([
-            buttonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            buttonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            buttonStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-            buttonStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0)
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     
-    // Helper method to create a button with a given image and add action
-    private func createButton(withImage image: UIImage?, tag: Int) -> UIButton {
+    private func createButton(withImage image: UIImage?, action: Selector) -> UIButton {
         let button = UIButton(type: .system)
         button.setImage(image, for: .normal)
-        button.tintColor = .black
-        button.tag = tag
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Add target to handle button tap
-        button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-        
+        button.tintColor = AppConfiguration.UI.Colors.text
+        button.addTarget(self, action: action, for: .touchUpInside)
         return button
     }
     
-    // MARK: - Button Actions
+    @objc private func backButtonTapped() {
+        delegate?.buttonsViewDidRequestBack()
+    }
     
-    @objc private func buttonTapped(_ sender: UIButton) {
-        // Notify the delegate about which button was tapped using its tag
-        delegate?.bottomView(self, didTapButtonWith: sender.tag)
+    @objc private func homeButtonTapped() {
+        delegate?.buttonsViewDidRequestHome()
+    }
+    
+    @objc private func refreshButtonTapped() {
+        delegate?.buttonsViewDidRequestRefresh()
+    }
+    
+    @objc private func shareButtonTapped() {
+        delegate?.buttonsViewDidRequestShare()
+    }
+    
+    @objc private func reportButtonTapped() {
+        delegate?.buttonsViewDidRequestReport()
+    }
+    
+    @objc private func timerPickerButtonTapped() {
+        print("ButtonsView: Timer picker button tapped")
+        delegate?.buttonsViewDidRequestTimerPicker()
     }
 }

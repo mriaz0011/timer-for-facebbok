@@ -10,320 +10,307 @@
 import UIKit
 import WebKit
 
-protocol BottomViewDelegate: AnyObject {
-    func bottomView(_ bottomView: BottomView, didTapButtonWith tag: Int)
-}
-
-class SurfingViewController: UIViewController {
-
-    let topView = TopView() // Custom top view with clock and timer
-    private let webView = WKWebView() // Middle section for web content
-    private let bottomView = BottomView() // Custom bottom view with buttons
-    private let stackView = UIStackView() // StackView to arrange the views
-    private var timerPickerView: TimerPickerView! // Timer Picker view
-
-    // Timer model to handle business logic
-    let timerModel = TimerModel()
-    private var dispatchTimer: DispatchSourceTimer?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.backgroundColor = .orange
-        setupStackView()
-        setupTopView()
-        setupWebView()
-        setupBottomView()
-        setupTimerPickerView()
-
-        checkForNewDay()
-        
-        loadWebContent()
-
-        NotificationCenter.default.addObserver(self, selector: #selector(onReportDataUpdated), name: NSNotification.Name("ReportDataUpdated"), object: nil)
+final class SurfingViewController: UIViewController {
+    // MARK: - Properties
+    private let containerView: SurfingContainerView
+    private let buttonsController: ButtonsController
+    private let timerController: TimerController
+    private let webContentController: WebContentController
+    private let analyticsModel: AnalyticsModel
+    private let activityTracker: ActivityTracker
+    private let timerPickerController: TimerPickerController
+    private let dataManager: DataManager
+    private let shareController: ShareController
+    
+    // MARK: - Public Properties
+    var isTimerActive: Bool {
+        return timerController.isActive
+    }
+    
+    var remainingTime: TimeInterval {
+        return timerController.remainingTime
+    }
+    
+    var totalTimeSpent: TimeInterval {
+        return timerController.totalTimeSpent
     }
 
-    // MARK: - Hide Status Bar
     override var prefersStatusBarHidden: Bool {
         return true
     }
-
-    private func setupStackView() {
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.spacing = 0
-        view.addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+    
+    override var childForStatusBarHidden: UIViewController? {
+        return nil
     }
-
-    private func setupTopView() {
-        topView.delegate = self
-        stackView.addArrangedSubview(topView)
-        topView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            topView.heightAnchor.constraint(equalToConstant: 60)
-        ])
+    
+    // MARK: - Initialization
+    init(dependencies: SurfingViewControllerDependencies) {
+        self.containerView = SurfingContainerView()
+        self.buttonsController = dependencies.buttonsController
+        self.timerController = dependencies.timerController
+        self.webContentController = dependencies.webContentController
+        self.analyticsModel = dependencies.analyticsModel
+        self.dataManager = dependencies.dataManager
+        self.timerPickerController = dependencies.timerPickerController
+        self.activityTracker = ActivityTracker(analyticsModel: dependencies.analyticsModel)
+        self.shareController = ShareController(webContentModel: webContentController.webContentModel, delegate: nil)
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        shareController.delegate = self
+        setupChildControllers()
+        setupDelegates()
     }
-
-    private func setupWebView() {
-        webView.layer.borderColor = UIColor.lightGray.cgColor
-        webView.layer.borderWidth = 1
-        stackView.addArrangedSubview(webView)
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-
-    private func setupBottomView() {
-        bottomView.delegate = self
-        stackView.addArrangedSubview(bottomView)
-        bottomView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            bottomView.heightAnchor.constraint(equalToConstant: 70)
-        ])
+    
+    // MARK: - Lifecycle
+    override func loadView() {
+        view = containerView
     }
-
-    private func setupTimerPickerView() {
-        timerPickerView = TimerPickerView()
-        timerPickerView.translatesAutoresizingMaskIntoConstraints = false
-        timerPickerView.delegate = self
-        timerPickerView.isHidden = true
-        view.addSubview(timerPickerView)
-        NSLayoutConstraint.activate([
-            timerPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            timerPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            timerPickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupDelegates()
+        applyTheme()
+        setupInitialState()
     }
-
-    // MARK: - Timer Logic
-
-    func startTimer(duration: TimeInterval) {
-        timerModel.totalDuration = duration
-        timerModel.remainingTime = duration
-        timerModel.saveTimerState(remainingTime: timerModel.remainingTime)
-        startDispatchTimer()
+    
+    // MARK: - Setup
+    private func setupChildControllers() {
+        addChild(timerController)
+        addChild(webContentController)
+        addChild(buttonsController)
+        addChild(timerPickerController)
+        
+        containerView.addTimerView(timerController.timerView)
+        containerView.addButtonsView(buttonsController.buttonsView)
+        containerView.addWebContentView(webContentController.webContentView)
+        containerView.addTimerPickerView(timerPickerController.view)
+        
+        timerController.didMove(toParent: self)
+        webContentController.didMove(toParent: self)
+        buttonsController.didMove(toParent: self)
+        timerPickerController.didMove(toParent: self)
+        
+        timerPickerController.view.isHidden = true
     }
-
-    private func startDispatchTimer() {
-        dispatchTimer?.cancel() // Cancel previous timer if any
-        dispatchTimer = DispatchSource.makeTimerSource()
-        dispatchTimer?.schedule(deadline: .now(), repeating: 1.0)
-        dispatchTimer?.setEventHandler { [weak self] in
-            DispatchQueue.main.async {
-                self?.updateTimer()
-            }
-        }
-        dispatchTimer?.resume()
+    
+    private func setupDelegates() {
+        buttonsController.delegate = self
+        timerController.delegate = self
+        webContentController.delegate = self
+        timerPickerController.delegate = self
     }
-
-    private func updateTimer() {
-        if timerModel.remainingTime > 0 {
-            let hours = Int(timerModel.remainingTime) / 3600
-            let minutes = (Int(timerModel.remainingTime) % 3600) / 60
-            let seconds = Int(timerModel.remainingTime) % 60
-            topView.updateRemainingTimeLabel(hours: hours, minutes: minutes, seconds: seconds)
-            timerModel.remainingTime -= 1
-        } else {
-            dispatchTimer?.cancel()
-            topView.displayTimeUp()
-            timerModel.logTimeSpent()
-            loadWebContent()
-        }
-    }
-
-    // Save the current timer state before background or termination
-    func saveTimerState() {
-        if timerModel.isTimerSetForToday() {
-            timerModel.saveTimerState(remainingTime: timerModel.remainingTime)
-        }
-    }
-
-    // Resume the saved timer state
-    func resumeTimerState() {
-        if timerModel.isTimerSetForToday() {
-            timerModel.loadTimerState()
-            if timerModel.remainingTime > 0 {
-                startDispatchTimer()
+    
+    private func setupInitialState() {
+        // Start with timer picker hidden
+        containerView.showTimerPicker(false)
+        timerPickerController.view.isHidden = true
+        
+        // Check timer state and update web content accordingly
+        if timerController.shouldResetTimer() {
+            // New day - show set timer message
+            webContentController.updateContent(timerActive: false, timerExpired: false)
+        } else if timerController.isTimerSetForToday() {
+            if timerController.remainingTime > 0 {
+                timerController.resumeTimer()
+                webContentController.loadHomePage()
             } else {
-                topView.displayTimeUp()
+                // Time's up for today
+                webContentController.updateContent(timerActive: true, timerExpired: true)
             }
         }
     }
-
-    // Reset timer for a new day
-    private func checkForNewDay() {
-        timerModel.resetForNewDay()
-        if timerModel.isTimerSetForToday() {
-            resumeTimerState()
+    
+    // MARK: - Theme
+    private func applyTheme() {
+        let theme = ThemeManager.shared.currentTheme
+        view.backgroundColor = theme.backgroundColor
+        containerView.backgroundColor = theme.backgroundColor
+    }
+    
+    // MARK: - UI State
+    private func updateUIState(isTimerActive: Bool) {
+        containerView.showTimerPicker(!isTimerActive)
+        webContentController.updateContentBasedOnTimer(
+            isActive: isTimerActive,
+            remainingTime: timerController.remainingTime
+        )
+        
+        if isTimerActive {
+            analyticsModel.trackEvent(.timerSet(duration: timerController.remainingTime))
         }
     }
-
-    // MARK: - Load Web Content
-
-    private func loadWebContent() {
-        if timerModel.isTimerSetForToday() {
-            print(timerModel.remainingTime)
-            if timerModel.remainingTime > 0 {
-                if let url = URL(string: "https://www.facebook.com") {
-                    webView.load(URLRequest(url: url))
+    
+    // MARK: - State Restoration
+    func restoreState(isTimerActive: Bool, remainingTime: TimeInterval, totalTimeSpent: TimeInterval) {
+        if timerController.shouldResetTimer() {
+            // New day - reset timer state but keep total time spent
+            timerController.restoreTimer(remainingTime: 0, totalTimeSpent: totalTimeSpent)
+            containerView.showTimerPicker(true)
+            updateUIState(isTimerActive: false)
+            webContentController.updateContent(timerActive: false, timerExpired: false)
+        } else {
+            // Same day - restore previous state
+            timerController.restoreTimer(remainingTime: remainingTime, totalTimeSpent: totalTimeSpent)
+            containerView.showTimerPicker(!isTimerActive)
+            updateUIState(isTimerActive: isTimerActive)
+            
+            if remainingTime > 0 {
+                webContentController.updateRemainingTime(remainingTime, totalSpent: totalTimeSpent)
+                if isTimerActive {
+                    timerController.resumeTimer()
                 }
             } else {
-                showTimeOverMessage()
+                webContentController.updateContent(timerActive: true, timerExpired: true)
             }
-        } else {
-            showSetTimerMessage()
         }
     }
-
-    private func showTimeOverMessage() {
-        let htmlMessage = """
-            <html>
-            <body style="font-family: Arial; text-align: center; padding: 50px;">
-            <h1>Your today's set time is over.</h1>
-            <h3>You can use Facebook again tomorrow.</h3>
-            </body>
-            </html>
-            """
-        webView.loadHTMLString(htmlMessage, baseURL: nil)
+    
+    func showTimerPicker() {
+        containerView.showTimerPicker(true)
     }
-
-    private func showSetTimerMessage() {
-        let htmlMessage = """
-            <html>
-            <body style="font-family: Arial; text-align: center; padding: 50px;">
-            <h1>Set today's time.</h1>
-            <h3>You can use Facebook once you set today's timer.</h3>
-            </body>
-            </html>
-            """
-        webView.loadHTMLString(htmlMessage, baseURL: nil)
+    
+    func hideTimerPicker() {
+        containerView.showTimerPicker(false)
     }
-
-    @objc private func onReportDataUpdated() {
-        print("Report data has been updated")
+    
+    func pauseTimer() {
+        if timerController.isActive {
+            timerController.pauseTimer()
+        }
     }
 }
 
-extension SurfingViewController: BottomViewDelegate {
-    // MARK: - BottomView Delegate Methods
-
-    func bottomView(_ bottomView: BottomView, didTapButtonWith tag: Int) {
-        switch tag {
-        case 1: // Refresh button tapped
-            handleRefreshButton()
-        case 2: // Home button tapped
-            loadWebContent()
-        case 3: // Back button tapped
-            handleBackButton()
-        case 4: // Share button tapped
-            shareCurrentApp()
-            break
-        case 5: // Timer button tapped
-            handleTimerButton()
-        case 6: // Report button tapped
-            presentReportViewController()
-        default:
-            break
+// MARK: - ButtonsControllerDelegate
+extension SurfingViewController: ButtonsControllerDelegate {
+    func buttonsControllerDidRequestBack() {
+        if timerController.isActive && timerController.remainingTime > 0 {
+            webContentController.goBack()
         }
     }
     
-    private func handleRefreshButton() {
-        if timerModel.isTimerSetForToday() && timerModel.remainingTime > 0 {
-            webView.reload()
+    func buttonsControllerDidRequestHome() {
+        if timerController.isActive && timerController.remainingTime > 0 {
+            webContentController.loadHomePage()
         }
     }
     
-    private func handleBackButton() {
-        if timerModel.isTimerSetForToday() && timerModel.remainingTime > 0 {
-            // Check if the webView can go back in the browsing history
-            if webView.canGoBack {
-                webView.goBack() // Navigate to the previous page in the webView's history
+    func buttonsControllerDidRequestRefresh() {
+        if timerController.isActive && timerController.remainingTime > 0 {
+            webContentController.reload()
+        }
+    }
+    
+    func buttonsControllerDidRequestShare() {
+        shareController.presentShareSheet(on: self)
+    }
+    
+    func buttonsControllerDidRequestReport() {
+        presentReportViewController()
+    }
+    
+    func buttonsControllerDidRequestTimerPicker() {
+        if timerController.isActive {
+            if timerController.remainingTime > 0 {
+                AlertManager.showTimeSetAlert(on: self)
             } else {
-                // If there's no history to go back to, show an alert or take an alternative action
-                AlertManager.showNoHistoryAlert(on: self) // This can be a custom alert method to notify the user
-            }
+                AlertManager.showTimeUpAlert(on: self)
+            }            
+            return
         }
-    }
-    
-    // MARK: - Share Action
-    
-    private func shareCurrentApp() {
-        let message = "Check out this amazing app! Timer for Facebook. Get it from the App Store using the link below:"
         
-        // Include the App Store URL
-        if let urlToShare = URL(string: "https://apps.apple.com/gb/app/timer-for-facebook/id1150466189") {
-            let items: [Any] = [message, urlToShare] // Combine the message and the URL
-            
-            // Initialize the UIActivityViewController
-            let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
-            
-            // Exclude certain activity types (optional)
-            activityViewController.excludedActivityTypes = [.print, .assignToContact, .saveToCameraRoll, .addToReadingList]
-            
-            // On iPad, set up the presentation as a popover to avoid crashes
-            if let popoverController = activityViewController.popoverPresentationController {
-                popoverController.sourceView = self.view // Specify where the popover should appear
-                popoverController.permittedArrowDirections = .any
-                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // Centered popover
-            }
-            
-            // Present the activity view controller
-            present(activityViewController, animated: true, completion: nil)
-        } else {
-            // If URL creation fails, show an alert
-            AlertManager.shareErrorAlert(on: self)
-        }
-    }
-
-    private func presentReportViewController() {
-        let reportVC = ReportViewController()
-        reportVC.modalPresentationStyle = .fullScreen
-        let navController = UINavigationController(rootViewController: reportVC)
-        present(navController, animated: true, completion: nil)
-    }
-    
-    // MARK: - Timer Picker Handling
-    
-    private func handleTimerButton() {
-        if timerModel.isTimerSetForToday() {
-            if timerModel.remainingTime > 0 {
-                AlertManager.showTimeSetAlert(on: self)
-            } else {
-                AlertManager.showSetTimeTomorrowAlert(on: self)
-            }
-        } else {
-            if timerModel.remainingTime > 0 {
-                AlertManager.showTimeSetAlert(on: self)
-            } else {
-                timerPickerView.showPicker() // Show the timer picker when the timer button is tapped
-            }
-        }
+        containerView.showTimerPicker(true)
+        timerPickerController.showTimerPicker()
     }
 }
 
-extension SurfingViewController: TimerPickerViewDelegate {
-    func timerPickerView(_ pickerView: TimerPickerView, didSelectHour hour: Int, minute: Int) {
-        let duration = TimeInterval(hour * 3600 + minute * 60)
-        startTimer(duration: duration)
-        loadWebContent()
+// MARK: - TimerControllerDelegate
+extension SurfingViewController: TimerControllerDelegate {
+    func timerDidUpdate(hours: Int, minutes: Int, seconds: Int) {
+        let remainingTime = TimeInterval(hours * 3600 + minutes * 60 + seconds)
+        webContentController.updateRemainingTime(remainingTime, totalSpent: timerController.totalTimeSpent)
     }
-}
-
-extension SurfingViewController: TopViewDelegate {
-    // MARK: - TopViewDelegate Methods
+    
+    func timerDidStart(duration: TimeInterval) {
+        analyticsModel.trackEvent(.timerSet(duration: duration))
+        activityTracker.startTracking()
+        containerView.showTimerPicker(false)
+    }
     
     func timerDidEnd() {
-        // Handle the timer ending event
-        timerModel.logTimeSpent() // Log the time spent when the timer ends
-        dispatchTimer?.cancel()
-        timerModel.remainingTime = 0.0
-        timerModel.resetForNewDay()
-        topView.displayTimeUp()
-        loadWebContent()
+        webContentController.updateRemainingTime(0, totalSpent: timerController.totalTimeSpent)
+        analyticsModel.trackEvent(.timerExpired)
+        activityTracker.stopTracking()
     }
 }
+
+// MARK: - WebContentControllerDelegate
+extension SurfingViewController: WebContentControllerDelegate {
+    func webContentControllerDidFinishLoading() {
+        analyticsModel.trackEvent(.webContentLoaded)
+        updateUIState(isTimerActive: timerController.isActive)
+    }
+    
+    func webContentControllerDidFailLoading(with error: Error) {
+        handleError(error)
+        analyticsModel.trackEvent(.webContentLoadingFailed(error))
+    }
+}
+
+// MARK: - TimerPickerControllerDelegate
+extension SurfingViewController: TimerPickerControllerDelegate {
+    func timerPickerDidSelect(duration: TimeInterval) {
+        containerView.showTimerPicker(false)
+        timerController.startTimer(duration: duration)
+    }
+    
+    func timerPickerDidCancel() {
+        containerView.showTimerPicker(false)
+    }
+}
+
+// MARK: - ShareControllerDelegate
+extension SurfingViewController: ShareControllerDelegate {
+    func shareController(_ controller: ShareController, didShareContent content: Any) {
+        analyticsModel.trackEvent(.shareAttempted)
+    }
+    
+    func shareController(_ controller: ShareController, didFailWithError error: Error) {
+        handleError(error)
+        analyticsModel.trackEvent(.error(.shareError(error)))
+    }
+}
+
+// MARK: - Private Methods
+private extension SurfingViewController {
+    private func presentReportViewController() {
+        let reportController = ReportController()
+        let reportVC = ReportViewController(reportController: reportController)
+        let navigationController = UINavigationController(rootViewController: reportVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
+    }
+    
+    private func handleError(_ error: Error) {
+        switch error {
+        case let dataError as DataError:
+            AlertManager.showAlert(.error(dataError), on: self)
+        case let timerError as TimerError:
+            AlertManager.showAlert(.timerError(timerError), on: self)
+        case let webError as WebError:
+            AlertManager.showAlert(.webError(webError), on: self)
+        case let appError as AppError:
+            AlertManager.showAlert(.error(appError), on: self)
+        default:
+            let dataError = DataError.saveFailed(error)
+            AlertManager.showAlert(.error(dataError), on: self)
+        }
+    }
+}
+
+
+

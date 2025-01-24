@@ -7,18 +7,75 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE2754AD1D79CB3000F2A511 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2754AC1D79CB3000F2A511 /* AppDelegate.swift */; };
-		CE2754B71D79CB3000F2A511 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2754B51D79CB3000F2A511 /* LaunchScreen.storyboard */; };
-		CE37313D2CA45CAA0042E9CA /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37313C2CA45CAA0042E9CA /* AlertManager.swift */; };
-		CE5C69E92CA1BF2000FC3715 /* SurfingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C69E82CA1BF2000FC3715 /* SurfingViewController.swift */; };
-		CE5C69EB2CA1BF5C00FC3715 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C69EA2CA1BF5C00FC3715 /* TopView.swift */; };
-		CE5C69ED2CA1BF9D00FC3715 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C69EC2CA1BF9D00FC3715 /* BottomView.swift */; };
-		CE752F212CA6C32E00AEC2A7 /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE752F202CA6C32E00AEC2A7 /* ReportModel.swift */; };
-		CE752F232CA6C36E00AEC2A7 /* ReportGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE752F222CA6C36E00AEC2A7 /* ReportGraphView.swift */; };
-		CE752F252CA6C61E00AEC2A7 /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE752F242CA6C61E00AEC2A7 /* TimerModel.swift */; };
-		CEDC55162CA5E952008FEC95 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC55152CA5E952008FEC95 /* ReportViewController.swift */; };
-		CEFF4ACD2CA4369C00A803F2 /* TimerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF4ACC2CA4369C00A803F2 /* TimerPickerView.swift */; };
-		E79A4A7525BDFE0200FB8148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E79A4A7425BDFE0200FB8148 /* Assets.xcassets */; };
+		CE17B0602CF13734005F9FE4 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE17B05F2CF13734005F9FE4 /* PersistenceManager.swift */; };
+		CE28EC6D2CF7333600A66FD6 /* AnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE28EC6B2CF7333600A66FD6 /* AnalyticsEvent.swift */; };
+		CE28EC6E2CF7333600A66FD6 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE28EC6C2CF7333600A66FD6 /* AppError.swift */; };
+		CE28EC702CF7352500A66FD6 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE28EC6F2CF7352500A66FD6 /* AlertManager.swift */; };
+		CEA2D0792CF00CF300973583 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0262CF00CF300973583 /* AppCoordinator.swift */; };
+		CEA2D07A2CF00CF300973583 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0272CF00CF300973583 /* MainCoordinator.swift */; };
+		CEA2D07D2CF00CF300973583 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D02C2CF00CF300973583 /* AppConfiguration.swift */; };
+		CEA2D07E2CF00CF300973583 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D02E2CF00CF300973583 /* DataManager.swift */; };
+		CEA2D07F2CF00CF300973583 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D02F2CF00CF300973583 /* CacheManager.swift */; };
+		CEA2D0802CF00CF300973583 /* AppLifecycleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0302CF00CF300973583 /* AppLifecycleManager.swift */; };
+		CEA2D0812CF00CF300973583 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0312CF00CF300973583 /* NotificationManager.swift */; };
+		CEA2D0822CF00CF300973583 /* ViewLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0322CF00CF300973583 /* ViewLayoutManager.swift */; };
+		CEA2D0832CF00CF300973583 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0332CF00CF300973583 /* UserDefaultsManager.swift */; };
+		CEA2D0852CF00CF300973583 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0352CF00CF300973583 /* ThemeManager.swift */; };
+		CEA2D0862CF00CF300973583 /* WebViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0362CF00CF300973583 /* WebViewManager.swift */; };
+		CEA2D0872CF00CF300973583 /* ReportDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0372CF00CF300973583 /* ReportDataManager.swift */; };
+		CEA2D0882CF00CF300973583 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA2D0382CF00CF300973583 /* Assets.xcassets */; };
+		CEA2D0892CF00CF300973583 /* ThemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D03A2CF00CF300973583 /* ThemeModel.swift */; };
+		CEA2D08A2CF00CF300973583 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D03B2CF00CF300973583 /* TimerState.swift */; };
+		CEA2D08B2CF00CF300973583 /* LocalizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D03C2CF00CF300973583 /* LocalizationModel.swift */; };
+		CEA2D08C2CF00CF300973583 /* DataStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D03D2CF00CF300973583 /* DataStoreModel.swift */; };
+		CEA2D08E2CF00CF300973583 /* WebContentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D03F2CF00CF300973583 /* WebContentState.swift */; };
+		CEA2D08F2CF00CF300973583 /* AccessibilityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0402CF00CF300973583 /* AccessibilityModel.swift */; };
+		CEA2D0902CF00CF300973583 /* SurfingViewControllerDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0412CF00CF300973583 /* SurfingViewControllerDependencies.swift */; };
+		CEA2D0912CF00CF300973583 /* PersistentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0422CF00CF300973583 /* PersistentModels.swift */; };
+		CEA2D0922CF00CF300973583 /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0432CF00CF300973583 /* TimerModel.swift */; };
+		CEA2D0932CF00CF300973583 /* AppStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0442CF00CF300973583 /* AppStateModel.swift */; };
+		CEA2D0942CF00CF300973583 /* WebContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0452CF00CF300973583 /* WebContentModel.swift */; };
+		CEA2D0952CF00CF300973583 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0462CF00CF300973583 /* DailyUsage.swift */; };
+		CEA2D0962CF00CF300973583 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0472CF00CF300973583 /* AlertModel.swift */; };
+		CEA2D0972CF00CF300973583 /* TimerPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0482CF00CF300973583 /* TimerPickerModel.swift */; };
+		CEA2D0982CF00CF300973583 /* TimeFormatterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0492CF00CF300973583 /* TimeFormatterModel.swift */; };
+		CEA2D0992CF00CF300973583 /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D04A2CF00CF300973583 /* ReportModel.swift */; };
+		CEA2D09A2CF00CF300973583 /* AnalyticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D04B2CF00CF300973583 /* AnalyticsModel.swift */; };
+		CEA2D09B2CF00CF300973583 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D04C2CF00CF300973583 /* ErrorModel.swift */; };
+		CEA2D09D2CF00CF300973583 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D04F2CF00CF300973583 /* Notification+Extensions.swift */; };
+		CEA2D09E2CF00CF300973583 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0502CF00CF300973583 /* Date+Extensions.swift */; };
+		CEA2D09F2CF00CF300973583 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0522CF00CF300973583 /* Logger.swift */; };
+		CEA2D0A02CF00CF300973583 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0532CF00CF300973583 /* ErrorHandler.swift */; };
+		CEA2D0A12CF00CF300973583 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0542CF00CF300973583 /* ActivityTracker.swift */; };
+		CEA2D0A22CF00CF300973583 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0562CF00CF300973583 /* ViewFactory.swift */; };
+		CEA2D0A32CF00CF300973583 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0572CF00CF300973583 /* AlertFactory.swift */; };
+		CEA2D0A42CF00CF300973583 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0582CF00CF300973583 /* ViewControllerFactory.swift */; };
+		CEA2D0A52CF00CF300973583 /* ActivityViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0592CF00CF300973583 /* ActivityViewControllerFactory.swift */; };
+		CEA2D0A62CF00CF300973583 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D05A2CF00CF300973583 /* AppDelegate.swift */; };
+		CEA2D0A72CF00CF300973583 /* ReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D05C2CF00CF300973583 /* ReportController.swift */; };
+		CEA2D0A82CF00CF300973583 /* SurfingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D05D2CF00CF300973583 /* SurfingViewController.swift */; };
+		CEA2D0A92CF00CF300973583 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D05E2CF00CF300973583 /* TimerController.swift */; };
+		CEA2D0AA2CF00CF300973583 /* LifecycleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D05F2CF00CF300973583 /* LifecycleController.swift */; };
+		CEA2D0AB2CF00CF300973583 /* WebContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0602CF00CF300973583 /* WebContentController.swift */; };
+		CEA2D0AD2CF00CF300973583 /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0622CF00CF300973583 /* ShareController.swift */; };
+		CEA2D0AE2CF00CF300973583 /* TimerPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0632CF00CF300973583 /* TimerPickerController.swift */; };
+		CEA2D0AF2CF00CF300973583 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0642CF00CF300973583 /* ReportViewController.swift */; };
+		CEA2D0B02CF00CF300973583 /* ButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0652CF00CF300973583 /* ButtonsController.swift */; };
+		CEA2D0B12CF00CF300973583 /* SurfingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0672CF00CF300973583 /* SurfingContainerView.swift */; };
+		CEA2D0B22CF00CF300973583 /* TimerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0682CF00CF300973583 /* TimerPickerView.swift */; };
+		CEA2D0B52CF00CF300973583 /* ThemeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D06B2CF00CF300973583 /* ThemeableView.swift */; };
+		CEA2D0B62CF00CF300973583 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA2D06C2CF00CF300973583 /* LaunchScreen.storyboard */; };
+		CEA2D0B82CF00CF300973583 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D06F2CF00CF300973583 /* NavigationView.swift */; };
+		CEA2D0B92CF00CF300973583 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0702CF00CF300973583 /* ButtonsView.swift */; };
+		CEA2D0BA2CF00CF300973583 /* WebContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0712CF00CF300973583 /* WebContentView.swift */; };
+		CEA2D0BB2CF00CF300973583 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0722CF00CF300973583 /* TimerView.swift */; };
+		CEA2D0BC2CF00CF300973583 /* AppLifecycleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0742CF00CF300973583 /* AppLifecycleDelegate.swift */; };
+		CEA2D0BD2CF00CF300973583 /* ReportDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0752CF00CF300973583 /* ReportDataDelegate.swift */; };
+		CEA2D0BE2CF00CF300973583 /* AppLifecycleManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0762CF00CF300973583 /* AppLifecycleManagerDelegate.swift */; };
+		CEA2D0C02CF00CF300973583 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0782CF00CF300973583 /* SceneDelegate.swift */; };
+		CEA2D0C22CF010A400973583 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0C12CF010A400973583 /* Coordinator.swift */; };
+		CEA2D0C42CF0133800973583 /* LifecycleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0C32CF0133800973583 /* LifecycleManager.swift */; };
+		CEBCF0322CF506A600FA5B36 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBCF0312CF506A600FA5B36 /* GraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,21 +89,77 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE17B05F2CF13734005F9FE4 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		CE2754A91D79CB3000F2A511 /* Facebook Time.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Facebook Time.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE2754AC1D79CB3000F2A511 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE2754B61D79CB3000F2A511 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CE2754B81D79CB3000F2A511 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE2754BD1D79CB3000F2A511 /* Facebook TimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Facebook TimeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE37313C2CA45CAA0042E9CA /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
-		CE5C69E82CA1BF2000FC3715 /* SurfingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingViewController.swift; sourceTree = "<group>"; };
-		CE5C69EA2CA1BF5C00FC3715 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
-		CE5C69EC2CA1BF9D00FC3715 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
-		CE752F202CA6C32E00AEC2A7 /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
-		CE752F222CA6C36E00AEC2A7 /* ReportGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportGraphView.swift; sourceTree = "<group>"; };
-		CE752F242CA6C61E00AEC2A7 /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
-		CEDC55152CA5E952008FEC95 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
-		CEFF4ACC2CA4369C00A803F2 /* TimerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPickerView.swift; sourceTree = "<group>"; };
-		E79A4A7425BDFE0200FB8148 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE28EC6B2CF7333600A66FD6 /* AnalyticsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsEvent.swift; sourceTree = "<group>"; };
+		CE28EC6C2CF7333600A66FD6 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		CE28EC6F2CF7352500A66FD6 /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		CEA2D0262CF00CF300973583 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		CEA2D0272CF00CF300973583 /* MainCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		CEA2D02C2CF00CF300973583 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		CEA2D02E2CF00CF300973583 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		CEA2D02F2CF00CF300973583 /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		CEA2D0302CF00CF300973583 /* AppLifecycleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLifecycleManager.swift; sourceTree = "<group>"; };
+		CEA2D0312CF00CF300973583 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		CEA2D0322CF00CF300973583 /* ViewLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewLayoutManager.swift; sourceTree = "<group>"; };
+		CEA2D0332CF00CF300973583 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		CEA2D0352CF00CF300973583 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		CEA2D0362CF00CF300973583 /* WebViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewManager.swift; sourceTree = "<group>"; };
+		CEA2D0372CF00CF300973583 /* ReportDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDataManager.swift; sourceTree = "<group>"; };
+		CEA2D0382CF00CF300973583 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CEA2D03A2CF00CF300973583 /* ThemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeModel.swift; sourceTree = "<group>"; };
+		CEA2D03B2CF00CF300973583 /* TimerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
+		CEA2D03C2CF00CF300973583 /* LocalizationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationModel.swift; sourceTree = "<group>"; };
+		CEA2D03D2CF00CF300973583 /* DataStoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStoreModel.swift; sourceTree = "<group>"; };
+		CEA2D03F2CF00CF300973583 /* WebContentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentState.swift; sourceTree = "<group>"; };
+		CEA2D0402CF00CF300973583 /* AccessibilityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessibilityModel.swift; sourceTree = "<group>"; };
+		CEA2D0412CF00CF300973583 /* SurfingViewControllerDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurfingViewControllerDependencies.swift; sourceTree = "<group>"; };
+		CEA2D0422CF00CF300973583 /* PersistentModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentModels.swift; sourceTree = "<group>"; };
+		CEA2D0432CF00CF300973583 /* TimerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
+		CEA2D0442CF00CF300973583 /* AppStateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStateModel.swift; sourceTree = "<group>"; };
+		CEA2D0452CF00CF300973583 /* WebContentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentModel.swift; sourceTree = "<group>"; };
+		CEA2D0462CF00CF300973583 /* DailyUsage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyUsage.swift; sourceTree = "<group>"; };
+		CEA2D0472CF00CF300973583 /* AlertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		CEA2D0482CF00CF300973583 /* TimerPickerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerPickerModel.swift; sourceTree = "<group>"; };
+		CEA2D0492CF00CF300973583 /* TimeFormatterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFormatterModel.swift; sourceTree = "<group>"; };
+		CEA2D04A2CF00CF300973583 /* ReportModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
+		CEA2D04B2CF00CF300973583 /* AnalyticsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsModel.swift; sourceTree = "<group>"; };
+		CEA2D04C2CF00CF300973583 /* ErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
+		CEA2D04F2CF00CF300973583 /* Notification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
+		CEA2D0502CF00CF300973583 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		CEA2D0522CF00CF300973583 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		CEA2D0532CF00CF300973583 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		CEA2D0542CF00CF300973583 /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
+		CEA2D0562CF00CF300973583 /* ViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
+		CEA2D0572CF00CF300973583 /* AlertFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
+		CEA2D0582CF00CF300973583 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
+		CEA2D0592CF00CF300973583 /* ActivityViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewControllerFactory.swift; sourceTree = "<group>"; };
+		CEA2D05A2CF00CF300973583 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CEA2D05C2CF00CF300973583 /* ReportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportController.swift; sourceTree = "<group>"; };
+		CEA2D05D2CF00CF300973583 /* SurfingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurfingViewController.swift; sourceTree = "<group>"; };
+		CEA2D05E2CF00CF300973583 /* TimerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
+		CEA2D05F2CF00CF300973583 /* LifecycleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifecycleController.swift; sourceTree = "<group>"; };
+		CEA2D0602CF00CF300973583 /* WebContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentController.swift; sourceTree = "<group>"; };
+		CEA2D0622CF00CF300973583 /* ShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
+		CEA2D0632CF00CF300973583 /* TimerPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerPickerController.swift; sourceTree = "<group>"; };
+		CEA2D0642CF00CF300973583 /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		CEA2D0652CF00CF300973583 /* ButtonsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsController.swift; sourceTree = "<group>"; };
+		CEA2D0672CF00CF300973583 /* SurfingContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurfingContainerView.swift; sourceTree = "<group>"; };
+		CEA2D0682CF00CF300973583 /* TimerPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerPickerView.swift; sourceTree = "<group>"; };
+		CEA2D06B2CF00CF300973583 /* ThemeableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeableView.swift; sourceTree = "<group>"; };
+		CEA2D06D2CF00CF300973583 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CEA2D06F2CF00CF300973583 /* NavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		CEA2D0702CF00CF300973583 /* ButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
+		CEA2D0712CF00CF300973583 /* WebContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView.swift; sourceTree = "<group>"; };
+		CEA2D0722CF00CF300973583 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		CEA2D0742CF00CF300973583 /* AppLifecycleDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLifecycleDelegate.swift; sourceTree = "<group>"; };
+		CEA2D0752CF00CF300973583 /* ReportDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDataDelegate.swift; sourceTree = "<group>"; };
+		CEA2D0762CF00CF300973583 /* AppLifecycleManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLifecycleManagerDelegate.swift; sourceTree = "<group>"; };
+		CEA2D0782CF00CF300973583 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		CEA2D0C12CF010A400973583 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		CEA2D0C32CF0133800973583 /* LifecycleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifecycleManager.swift; sourceTree = "<group>"; };
+		CEBCF0312CF506A600FA5B36 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +183,7 @@
 		CE2754A01D79CB3000F2A511 = {
 			isa = PBXGroup;
 			children = (
-				CE2754AB1D79CB3000F2A511 /* Facebook Time */,
+				CEA2D0242CF00CF300973583 /* Facebook Time */,
 				CE2754AA1D79CB3000F2A511 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,56 +197,160 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CE2754AB1D79CB3000F2A511 /* Facebook Time */ = {
+		CEA2D0242CF00CF300973583 /* Facebook Time */ = {
 			isa = PBXGroup;
 			children = (
-				E7AA6B4F25C98E5400710FCC /* App Managers */,
-				E7AA6B4E25C98E3D00710FCC /* Controllers */,
-				E7AA6B4D25C98E1600710FCC /* Views */,
-				E7AA6B4C25C98DB800710FCC /* Models */,
-				E79A4A7425BDFE0200FB8148 /* Assets.xcassets */,
-				CE2754B81D79CB3000F2A511 /* Info.plist */,
+				CEA2D0252CF00CF300973583 /* Coordinators */,
+				CEA2D02B2CF00CF300973583 /* Configuration */,
+				CEA2D02D2CF00CF300973583 /* Managers */,
+				CEA2D0382CF00CF300973583 /* Assets.xcassets */,
+				CEA2D0392CF00CF300973583 /* Models */,
+				CEA2D04E2CF00CF300973583 /* Extensions */,
+				CEA2D0512CF00CF300973583 /* Utilities */,
+				CEA2D0552CF00CF300973583 /* Factories */,
+				CEA2D05A2CF00CF300973583 /* AppDelegate.swift */,
+				CEA2D05B2CF00CF300973583 /* Controllers */,
+				CEA2D0662CF00CF300973583 /* Views */,
+				CEA2D0732CF00CF300973583 /* Protocols */,
+				CEA2D0782CF00CF300973583 /* SceneDelegate.swift */,
 			);
 			path = "Facebook Time";
 			sourceTree = "<group>";
 		};
-		E7AA6B4C25C98DB800710FCC /* Models */ = {
+		CEA2D0252CF00CF300973583 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				CE752F202CA6C32E00AEC2A7 /* ReportModel.swift */,
-				CE752F242CA6C61E00AEC2A7 /* TimerModel.swift */,
+				CEA2D0262CF00CF300973583 /* AppCoordinator.swift */,
+				CEA2D0272CF00CF300973583 /* MainCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		CEA2D02B2CF00CF300973583 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				CEA2D02C2CF00CF300973583 /* AppConfiguration.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		CEA2D02D2CF00CF300973583 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CE17B05F2CF13734005F9FE4 /* PersistenceManager.swift */,
+				CEA2D0C32CF0133800973583 /* LifecycleManager.swift */,
+				CEA2D02E2CF00CF300973583 /* DataManager.swift */,
+				CEA2D02F2CF00CF300973583 /* CacheManager.swift */,
+				CEA2D0302CF00CF300973583 /* AppLifecycleManager.swift */,
+				CEA2D0312CF00CF300973583 /* NotificationManager.swift */,
+				CEA2D0322CF00CF300973583 /* ViewLayoutManager.swift */,
+				CEA2D0332CF00CF300973583 /* UserDefaultsManager.swift */,
+				CEA2D0352CF00CF300973583 /* ThemeManager.swift */,
+				CEA2D0362CF00CF300973583 /* WebViewManager.swift */,
+				CEA2D0372CF00CF300973583 /* ReportDataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		CEA2D0392CF00CF300973583 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE28EC6B2CF7333600A66FD6 /* AnalyticsEvent.swift */,
+				CE28EC6C2CF7333600A66FD6 /* AppError.swift */,
+				CEA2D03A2CF00CF300973583 /* ThemeModel.swift */,
+				CEA2D03B2CF00CF300973583 /* TimerState.swift */,
+				CEA2D03C2CF00CF300973583 /* LocalizationModel.swift */,
+				CEA2D03D2CF00CF300973583 /* DataStoreModel.swift */,
+				CEA2D03F2CF00CF300973583 /* WebContentState.swift */,
+				CEA2D0402CF00CF300973583 /* AccessibilityModel.swift */,
+				CEA2D0412CF00CF300973583 /* SurfingViewControllerDependencies.swift */,
+				CEA2D0422CF00CF300973583 /* PersistentModels.swift */,
+				CEA2D0432CF00CF300973583 /* TimerModel.swift */,
+				CEA2D0442CF00CF300973583 /* AppStateModel.swift */,
+				CEA2D0452CF00CF300973583 /* WebContentModel.swift */,
+				CEA2D0462CF00CF300973583 /* DailyUsage.swift */,
+				CEA2D0472CF00CF300973583 /* AlertModel.swift */,
+				CEA2D0482CF00CF300973583 /* TimerPickerModel.swift */,
+				CEA2D0492CF00CF300973583 /* TimeFormatterModel.swift */,
+				CEA2D04A2CF00CF300973583 /* ReportModel.swift */,
+				CEA2D04B2CF00CF300973583 /* AnalyticsModel.swift */,
+				CEA2D04C2CF00CF300973583 /* ErrorModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		E7AA6B4D25C98E1600710FCC /* Views */ = {
+		CEA2D04E2CF00CF300973583 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CE2754B51D79CB3000F2A511 /* LaunchScreen.storyboard */,
-				CE5C69EA2CA1BF5C00FC3715 /* TopView.swift */,
-				CE5C69EC2CA1BF9D00FC3715 /* BottomView.swift */,
-				CEFF4ACC2CA4369C00A803F2 /* TimerPickerView.swift */,
-				CE752F222CA6C36E00AEC2A7 /* ReportGraphView.swift */,
+				CEA2D04F2CF00CF300973583 /* Notification+Extensions.swift */,
+				CEA2D0502CF00CF300973583 /* Date+Extensions.swift */,
 			);
-			path = Views;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E7AA6B4E25C98E3D00710FCC /* Controllers */ = {
+		CEA2D0512CF00CF300973583 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				CE5C69E82CA1BF2000FC3715 /* SurfingViewController.swift */,
-				CEDC55152CA5E952008FEC95 /* ReportViewController.swift */,
+				CE28EC6F2CF7352500A66FD6 /* AlertManager.swift */,
+				CEA2D0522CF00CF300973583 /* Logger.swift */,
+				CEA2D0532CF00CF300973583 /* ErrorHandler.swift */,
+				CEA2D0542CF00CF300973583 /* ActivityTracker.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		CEA2D0552CF00CF300973583 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				CEA2D0562CF00CF300973583 /* ViewFactory.swift */,
+				CEA2D0572CF00CF300973583 /* AlertFactory.swift */,
+				CEA2D0582CF00CF300973583 /* ViewControllerFactory.swift */,
+				CEA2D0592CF00CF300973583 /* ActivityViewControllerFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		CEA2D05B2CF00CF300973583 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CEA2D05C2CF00CF300973583 /* ReportController.swift */,
+				CEA2D05D2CF00CF300973583 /* SurfingViewController.swift */,
+				CEA2D05E2CF00CF300973583 /* TimerController.swift */,
+				CEA2D05F2CF00CF300973583 /* LifecycleController.swift */,
+				CEA2D0602CF00CF300973583 /* WebContentController.swift */,
+				CEA2D0622CF00CF300973583 /* ShareController.swift */,
+				CEA2D0632CF00CF300973583 /* TimerPickerController.swift */,
+				CEA2D0642CF00CF300973583 /* ReportViewController.swift */,
+				CEA2D0652CF00CF300973583 /* ButtonsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		E7AA6B4F25C98E5400710FCC /* App Managers */ = {
+		CEA2D0662CF00CF300973583 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CE2754AC1D79CB3000F2A511 /* AppDelegate.swift */,
-				CE37313C2CA45CAA0042E9CA /* AlertManager.swift */,
+				CEBCF0312CF506A600FA5B36 /* GraphView.swift */,
+				CEA2D0672CF00CF300973583 /* SurfingContainerView.swift */,
+				CEA2D0682CF00CF300973583 /* TimerPickerView.swift */,
+				CEA2D06B2CF00CF300973583 /* ThemeableView.swift */,
+				CEA2D06C2CF00CF300973583 /* LaunchScreen.storyboard */,
+				CEA2D06F2CF00CF300973583 /* NavigationView.swift */,
+				CEA2D0702CF00CF300973583 /* ButtonsView.swift */,
+				CEA2D0712CF00CF300973583 /* WebContentView.swift */,
+				CEA2D0722CF00CF300973583 /* TimerView.swift */,
 			);
-			path = "App Managers";
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CEA2D0732CF00CF300973583 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CEA2D0C12CF010A400973583 /* Coordinator.swift */,
+				CEA2D0742CF00CF300973583 /* AppLifecycleDelegate.swift */,
+				CEA2D0752CF00CF300973583 /* ReportDataDelegate.swift */,
+				CEA2D0762CF00CF300973583 /* AppLifecycleManagerDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,8 +438,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE2754B71D79CB3000F2A511 /* LaunchScreen.storyboard in Resources */,
-				E79A4A7525BDFE0200FB8148 /* Assets.xcassets in Resources */,
+				CEA2D0882CF00CF300973583 /* Assets.xcassets in Resources */,
+				CEA2D0B62CF00CF300973583 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,16 +457,73 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE752F252CA6C61E00AEC2A7 /* TimerModel.swift in Sources */,
-				CE37313D2CA45CAA0042E9CA /* AlertManager.swift in Sources */,
-				CEFF4ACD2CA4369C00A803F2 /* TimerPickerView.swift in Sources */,
-				CE5C69EB2CA1BF5C00FC3715 /* TopView.swift in Sources */,
-				CE5C69E92CA1BF2000FC3715 /* SurfingViewController.swift in Sources */,
-				CE2754AD1D79CB3000F2A511 /* AppDelegate.swift in Sources */,
-				CE752F212CA6C32E00AEC2A7 /* ReportModel.swift in Sources */,
-				CEDC55162CA5E952008FEC95 /* ReportViewController.swift in Sources */,
-				CE5C69ED2CA1BF9D00FC3715 /* BottomView.swift in Sources */,
-				CE752F232CA6C36E00AEC2A7 /* ReportGraphView.swift in Sources */,
+				CEA2D0A82CF00CF300973583 /* SurfingViewController.swift in Sources */,
+				CEA2D09B2CF00CF300973583 /* ErrorModel.swift in Sources */,
+				CEA2D0802CF00CF300973583 /* AppLifecycleManager.swift in Sources */,
+				CEA2D0BA2CF00CF300973583 /* WebContentView.swift in Sources */,
+				CEA2D0B22CF00CF300973583 /* TimerPickerView.swift in Sources */,
+				CEA2D0B52CF00CF300973583 /* ThemeableView.swift in Sources */,
+				CEA2D0A52CF00CF300973583 /* ActivityViewControllerFactory.swift in Sources */,
+				CEA2D0C42CF0133800973583 /* LifecycleManager.swift in Sources */,
+				CEA2D0A62CF00CF300973583 /* AppDelegate.swift in Sources */,
+				CEA2D0A92CF00CF300973583 /* TimerController.swift in Sources */,
+				CEA2D0A22CF00CF300973583 /* ViewFactory.swift in Sources */,
+				CEA2D0A42CF00CF300973583 /* ViewControllerFactory.swift in Sources */,
+				CEA2D0B12CF00CF300973583 /* SurfingContainerView.swift in Sources */,
+				CEA2D07E2CF00CF300973583 /* DataManager.swift in Sources */,
+				CEA2D0972CF00CF300973583 /* TimerPickerModel.swift in Sources */,
+				CEA2D0AD2CF00CF300973583 /* ShareController.swift in Sources */,
+				CEA2D0BE2CF00CF300973583 /* AppLifecycleManagerDelegate.swift in Sources */,
+				CEA2D0B92CF00CF300973583 /* ButtonsView.swift in Sources */,
+				CEA2D0B82CF00CF300973583 /* NavigationView.swift in Sources */,
+				CEA2D0952CF00CF300973583 /* DailyUsage.swift in Sources */,
+				CEA2D0AF2CF00CF300973583 /* ReportViewController.swift in Sources */,
+				CE28EC6E2CF7333600A66FD6 /* AppError.swift in Sources */,
+				CEA2D0812CF00CF300973583 /* NotificationManager.swift in Sources */,
+				CEA2D0942CF00CF300973583 /* WebContentModel.swift in Sources */,
+				CEA2D0832CF00CF300973583 /* UserDefaultsManager.swift in Sources */,
+				CEA2D0BB2CF00CF300973583 /* TimerView.swift in Sources */,
+				CEA2D07D2CF00CF300973583 /* AppConfiguration.swift in Sources */,
+				CEA2D0C02CF00CF300973583 /* SceneDelegate.swift in Sources */,
+				CEA2D0A32CF00CF300973583 /* AlertFactory.swift in Sources */,
+				CEA2D0912CF00CF300973583 /* PersistentModels.swift in Sources */,
+				CEA2D0852CF00CF300973583 /* ThemeManager.swift in Sources */,
+				CEA2D0B02CF00CF300973583 /* ButtonsController.swift in Sources */,
+				CEA2D0872CF00CF300973583 /* ReportDataManager.swift in Sources */,
+				CEA2D08C2CF00CF300973583 /* DataStoreModel.swift in Sources */,
+				CEA2D0862CF00CF300973583 /* WebViewManager.swift in Sources */,
+				CEA2D0AB2CF00CF300973583 /* WebContentController.swift in Sources */,
+				CEA2D0792CF00CF300973583 /* AppCoordinator.swift in Sources */,
+				CEA2D0AA2CF00CF300973583 /* LifecycleController.swift in Sources */,
+				CEA2D0A12CF00CF300973583 /* ActivityTracker.swift in Sources */,
+				CEA2D0922CF00CF300973583 /* TimerModel.swift in Sources */,
+				CEA2D0A02CF00CF300973583 /* ErrorHandler.swift in Sources */,
+				CEA2D07A2CF00CF300973583 /* MainCoordinator.swift in Sources */,
+				CEA2D09F2CF00CF300973583 /* Logger.swift in Sources */,
+				CEA2D0BD2CF00CF300973583 /* ReportDataDelegate.swift in Sources */,
+				CEA2D09E2CF00CF300973583 /* Date+Extensions.swift in Sources */,
+				CEA2D0982CF00CF300973583 /* TimeFormatterModel.swift in Sources */,
+				CEA2D0AE2CF00CF300973583 /* TimerPickerController.swift in Sources */,
+				CEA2D08E2CF00CF300973583 /* WebContentState.swift in Sources */,
+				CEA2D08A2CF00CF300973583 /* TimerState.swift in Sources */,
+				CEA2D0A72CF00CF300973583 /* ReportController.swift in Sources */,
+				CEA2D08B2CF00CF300973583 /* LocalizationModel.swift in Sources */,
+				CE28EC702CF7352500A66FD6 /* AlertManager.swift in Sources */,
+				CEA2D0932CF00CF300973583 /* AppStateModel.swift in Sources */,
+				CEA2D0822CF00CF300973583 /* ViewLayoutManager.swift in Sources */,
+				CEA2D0992CF00CF300973583 /* ReportModel.swift in Sources */,
+				CEA2D0BC2CF00CF300973583 /* AppLifecycleDelegate.swift in Sources */,
+				CEA2D07F2CF00CF300973583 /* CacheManager.swift in Sources */,
+				CEA2D0C22CF010A400973583 /* Coordinator.swift in Sources */,
+				CE28EC6D2CF7333600A66FD6 /* AnalyticsEvent.swift in Sources */,
+				CEA2D0902CF00CF300973583 /* SurfingViewControllerDependencies.swift in Sources */,
+				CEA2D09A2CF00CF300973583 /* AnalyticsModel.swift in Sources */,
+				CEA2D0892CF00CF300973583 /* ThemeModel.swift in Sources */,
+				CEBCF0322CF506A600FA5B36 /* GraphView.swift in Sources */,
+				CEA2D0962CF00CF300973583 /* AlertModel.swift in Sources */,
+				CEA2D08F2CF00CF300973583 /* AccessibilityModel.swift in Sources */,
+				CE17B0602CF13734005F9FE4 /* PersistenceManager.swift in Sources */,
+				CEA2D09D2CF00CF300973583 /* Notification+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,10 +545,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CE2754B51D79CB3000F2A511 /* LaunchScreen.storyboard */ = {
+		CEA2D06C2CF00CF300973583 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CE2754B61D79CB3000F2A511 /* Base */,
+				CEA2D06D2CF00CF300973583 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -397,7 +671,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = F43KA2X29F;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -428,7 +702,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = F43KA2X29F;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -457,6 +731,7 @@
 		CE2754CA1D79CB3000F2A511 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Facebook TimeTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -470,6 +745,7 @@
 		CE2754CB1D79CB3000F2A511 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Facebook TimeTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

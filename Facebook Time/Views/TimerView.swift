@@ -18,6 +18,8 @@ class TimerView: UIView {
     
     // MARK: - UI Components
     
+    private var clockTimer: Timer?
+    
     private(set) var clockLabel: UILabel = {
         let label = UILabel()
         label.textColor = AppConfiguration.UI.Colors.text
@@ -52,13 +54,13 @@ class TimerView: UIView {
     // MARK: - Setup UI Elements
     
     private func setupView() {
-        backgroundColor = AppConfiguration.UI.Colors.navigationBar
+        backgroundColor =  AppConfiguration.UI.Colors.navigationBar
         
         addSubview(clockLabel)
         addSubview(remainingTimeLabel)
         
         // Set initial text values
-        clockLabel.text = "00:00"  // Initial clock value
+        clockLabel.text = "⏰"  // Clock emoji
         remainingTimeLabel.text = "00:00:00"  // Initial timer value
         
         NSLayoutConstraint.activate([
@@ -75,5 +77,36 @@ class TimerView: UIView {
     
     func displayTimeUp() {
         remainingTimeLabel.text = "Time's Up!"
+    }
+    
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        if window != nil {
+            startClockTimer()
+        } else {
+            stopClockTimer()
+        }
+    }
+    
+    private func startClockTimer() {
+        updateClockLabel() // Update immediately
+        clockTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            self?.updateClockLabel()
+        }
+    }
+    
+    private func stopClockTimer() {
+        clockTimer?.invalidate()
+        clockTimer = nil
+    }
+    
+    private func updateClockLabel() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        clockLabel.text = dateFormatter.string(from: Date())
+    }
+    
+    deinit {
+        stopClockTimer()
     }
 }

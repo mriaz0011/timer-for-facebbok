@@ -9,52 +9,100 @@
 import Foundation
 
 class ReportModel {
-    // Holds the usage data for each day (in seconds)
-    private(set) var reportData: [String: Double] = [:]
+    // MARK: - Properties
+    private let dataManager: ReportDataManager
+    private(set) var dailyUsage: [Date: TimeInterval] = [:]
+    private(set) var totalTimeSpent: TimeInterval = 0
+    weak var delegate: ReportDataDelegate?
     
-    init() {
-        loadReportData()
+    // MARK: - Initialization
+    init(dataManager: ReportDataManager = ReportDataManager(persistenceManager: UserDefaults.standard, delegate: nil)) {
+        self.dataManager = dataManager
+        setupNotifications()
     }
     
-    // Loads the report data from UserDefaults or initializes it
-    func loadReportData() {
-        reportData = UserDefaults.standard.dictionary(forKey: "WeekUsageReport") as? [String: Double] ?? [
-            "Monday": 0,
-            "Tuesday": 0,
-            "Wednesday": 0,
-            "Thursday": 0,
-            "Friday": 0,
-            "Saturday": 0,
-            "Sunday": 0
-        ]
+    // MARK: - Public Methods
+    func refresh() {
+        let weeklyData = dataManager.weeklyUsage
         
-        resetReportDataIfNeeded() // Check if data needs to be reset (every Monday)
-        print("Loaded report data: \(reportData)")
-    }
-    
-    // Resets the report data if today is Monday
-    private func resetReportDataIfNeeded() {
+        // Create a dictionary with proper date keys
         let calendar = Calendar.current
-        let currentDate = Date()
-        let currentWeekday = calendar.component(.weekday, from: currentDate)
+        var usageDict: [Date: TimeInterval] = [:]
         
-        // If today is Monday, reset the data
-        if currentWeekday == 2 {
-            reportData = [
-                "Monday": 0,
-                "Tuesday": 0,
-                "Wednesday": 0,
-                "Thursday": 0,
-                "Friday": 0,
-                "Saturday": 0,
-                "Sunday": 0
-            ]
-            UserDefaults.standard.set(reportData, forKey: "WeekUsageReport")
+        // Fill in all days of the week with zero duration
+        let today = Date()
+        for dayOffset in 0..<7 {
+            if let date = calendar.date(byAdding: .day, value: -dayOffset, to: today) {
+                let startOfDay = calendar.startOfDay(for: date)
+                usageDict[startOfDay] = 0
+            }
+        }
+        
+        // Update with actual usage data
+        for usage in weeklyData {
+            let startOfDay = calendar.startOfDay(for: usage.date)
+            if let existingDuration = usageDict[startOfDay] {
+                usageDict[startOfDay] = existingDuration + usage.duration
+            } else {
+                usageDict[startOfDay] = usage.duration
+            }
+        }
+        
+        self.dailyUsage = usageDict
+        self.totalTimeSpent = weeklyData.map { $0.duration }.reduce(0, +)
+        delegate?.reportDataDidUpdate()
+    }
+    
+    func usageForCurrentWeek() -> [Date: TimeInterval] {
+        return Dictionary(uniqueKeysWithValues: dataManager.weeklyUsage.map { 
+            ($0.date, $0.duration) 
+        })
+    }
+    
+    // MARK: - Private Methods
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(
+            forName: .usageStatsDidUpdate,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.refresh()
         }
     }
     
-    // Access the data for a particular day
-    func getTimeSpent(for day: String) -> Double {
-        return reportData[day] ?? 0
+    @objc private func handleDataUpdate() {
+        refresh()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func averageDailyUsage() -> TimeInterval {
+        let weekUsage = usageForCurrentWeek()
+        guard !weekUsage.isEmpty else { return 0 }
+        let totalTime = weekUsage.values.reduce(0, +)
+        return totalTime / TimeInterval(weekUsage.count)
+    }
+    
+    func mostUsedDay() -> Date? {
+        return dailyUsage.max(by: { $0.value < $1.value })?.key
+    }
+    
+    func leastUsedDay() -> Date? {
+        return dailyUsage.min(by: { $0.value < $1.value })?.key
+    }
+    
+    func formatTimeInterval(_ interval: TimeInterval) -> String {
+        let hours = Int(interval) / 3600
+        let minutes = (Int(interval) % 3600) / 60
+        return String(format: "%02d:%02d", hours, minutes)
+    }
+    
+    func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
     }
 }

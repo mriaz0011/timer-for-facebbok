@@ -9,47 +9,100 @@
 import UIKit
 
 class ReportViewController: UIViewController {
+    private let graphView = GraphView()
+    private let reportController: ReportController
     
-    private let reportGraphView = ReportGraphView()
-    private let reportModel = ReportModel() // Initialize the model
+    init(reportController: ReportController = ReportController()) {
+        self.reportController = reportController
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
         setupNavigationBar()
         
-        reportGraphView.setupGraphView(on: view) // Setup graph view
-        view.layoutIfNeeded() // Ensure layout is updated
+        graphView.setupGraphView(on: view)
+        view.layoutIfNeeded()
+        graphView.setupAxisLabels(on: view)
         
-        reportGraphView.setupAxisLabels(on: view) // Setup axis labels
+        // Immediately load and display data
+        reportController.delegate = self
+        reportController.refresh()
         
-        reportGraphView.drawGraph(reportData: reportModel.reportData) // Draw graph
+        setupNotifications()
+    }
+
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleTimeUpdate),
+            name: .usageStatsDidUpdate,
+            object: nil
+        )
     }
     
-    // Setup the navigation bar
-    private func setupNavigationBar() {
-        if let navigationBar = navigationController?.navigationBar {
-            let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = .orange
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
-            
-            navigationBar.standardAppearance = appearance
-            navigationBar.scrollEdgeAppearance = appearance
-            navigationBar.compactAppearance = appearance
-            navigationBar.isTranslucent = false
-        }
-
-        self.title = "Week Report"
+    @objc private func handleTimeUpdate() {
+        updateGraph()
+    }
+    
+    private func updateGraph() {
+        let reportData = UserDefaults.standard.dictionary(forKey: AppConfiguration.UserDefaultsKeys.weekUsageReport) as? [String: Double] ?? [:]
+        graphView.drawGraph(reportData: reportData)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func formatDataForGraph(_ dailyUsage: [Date: TimeInterval]) -> [String: Double] {
+        var formattedData: [String: Double] = [:]
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE" // Full day name
         
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        backButton.tintColor = .black
+        for (date, duration) in dailyUsage {
+            let dayName = dateFormatter.string(from: date)
+            formattedData[dayName] = Double(duration)
+        }
+        return formattedData
+    }
+    
+    private func setupNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = AppConfiguration.UI.Colors.navigationBar
+        appearance.titleTextAttributes = [.foregroundColor: AppConfiguration.UI.Colors.text]
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        
+        let backButton = UIBarButtonItem(
+            image: UIImage(systemName: "xmark"),
+            style: .plain,
+            target: self,
+            action: #selector(backButtonTapped)
+        )
+        backButton.tintColor = AppConfiguration.UI.Colors.text
         navigationItem.leftBarButtonItem = backButton
+        
+        title = "Usage Report"
     }
     
     @objc private func backButtonTapped() {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
+    }
+}
+
+// MARK: - ReportControllerDelegate
+extension ReportViewController: ReportControllerDelegate {
+    func reportDataDidUpdate(_ data: ReportData) {
+        let formattedData = formatDataForGraph(data.dailyUsage)
+        graphView.drawGraph(reportData: formattedData)
     }
 }

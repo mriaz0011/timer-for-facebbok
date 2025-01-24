@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BottomView: UIView {
+class ButtonsView: UIView {
     
     // MARK: - Properties
     

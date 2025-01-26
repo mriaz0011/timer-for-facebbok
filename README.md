@@ -1,6 +1,7 @@
 # timer-for-facebbok
 
 Let me explain the MVC pattern in this project:
+<br>
 Model:
 TimerModel: Handles timer state and logic
 AppStateModel: Manages app state persistence

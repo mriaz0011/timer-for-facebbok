@@ -1,4 +1,4 @@
-# timer-for-facebbok
+# Timer for Facebbok
 
 Let me explain the MVC pattern in this project:
 <br>

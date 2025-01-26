@@ -2,33 +2,36 @@
 
 Let me explain the MVC pattern in this project:
 <br>
-##Model:
-TimerModel: Handles timer state and logic
-AppStateModel: Manages app state persistence
-ReportModel: Handles usage statistics
-WebContentModel: Manages web content states
-ThemeModel: Handles app theming
+# Model:
+TimerModel: Handles timer state and logic <br>
+AppStateModel: Manages app state persistence <br>
+ReportModel: Handles usage statistics <br>
+WebContentModel: Manages web content states <br>
+ThemeModel: Handles app theming <br>
 <br>
-##View:
-TimerView: Displays timer UI
-SurfingContainerView: Main container view
-NavigationView: Navigation UI
-TimerPickerView: Timer selection UI
-WebContentView: Displays web content
+# View:
 <br>
-##Controller:
-TimerController: Mediates between TimerModel and TimerView
-WebContentController: Manages web content display
-SurfingViewController: Main view controller coordinating all components
-ReportViewController: Handles report display
+TimerView: Displays timer UI <br>
+SurfingContainerView: Main container view <br>
+NavigationView: Navigation UI <br>
+TimerPickerView: Timer selection UI <br>
+WebContentView: Displays web content <br>
 <br>
-##Flow Example:
-User starts timer:
-View: User interacts with TimerPickerView
-Controller: TimerController processes the input
-Model: TimerModel updates timer state
-Controller: Updates TimerView with new state
-App state changes:
-Controller: Detects state change
-Model: AppStateModel saves state
-Controller: Updates relevant views
+# Controller:
+<br>
+TimerController: Mediates between TimerModel and TimerView <br>
+WebContentController: Manages web content display <br>
+SurfingViewController: Main view controller coordinating all components <br>
+ReportViewController: Handles report display <br>
+<br>
+# Flow Example:
+<br>
+User starts timer: <br>
+View: User interacts with TimerPickerView <br>
+Controller: TimerController processes the input <br>
+Model: TimerModel updates timer state <br>
+Controller: Updates TimerView with new state <br>
+App state changes: <br>
+Controller: Detects state change <br>
+Model: AppStateModel saves state <br>
+Controller: Updates relevant views <br>

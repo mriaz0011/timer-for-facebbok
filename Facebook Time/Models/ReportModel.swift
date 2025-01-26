@@ -16,7 +16,10 @@ class ReportModel {
     weak var delegate: ReportDataDelegate?
     
     // MARK: - Initialization
-    init(dataManager: ReportDataManager = ReportDataManager(persistenceManager: UserDefaults.standard, delegate: nil)) {
+    init(dataManager: ReportDataManager = ReportDataManager(
+        persistenceManager: UserDefaultsManager(),
+        delegate: nil
+    )) {
         self.dataManager = dataManager
         setupNotifications()
     }
@@ -24,6 +27,7 @@ class ReportModel {
     // MARK: - Public Methods
     func refresh() {
         let weeklyData = dataManager.weeklyUsage
+        print("ReportModel - refresh: weeklyData count = \(weeklyData.count)")
         
         // Create a dictionary with proper date keys
         let calendar = Calendar.current
@@ -41,6 +45,7 @@ class ReportModel {
         // Update with actual usage data
         for usage in weeklyData {
             let startOfDay = calendar.startOfDay(for: usage.date)
+            print("ReportModel - Adding usage for \(startOfDay): \(usage.duration)")
             if let existingDuration = usageDict[startOfDay] {
                 usageDict[startOfDay] = existingDuration + usage.duration
             } else {
@@ -50,6 +55,7 @@ class ReportModel {
         
         self.dailyUsage = usageDict
         self.totalTimeSpent = weeklyData.map { $0.duration }.reduce(0, +)
+        print("ReportModel - Total time spent: \(totalTimeSpent)")
         delegate?.reportDataDidUpdate()
     }
     

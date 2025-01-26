@@ -5,75 +5,79 @@ protocol ReportDataManagerDelegate: AnyObject {
 }
 
 class ReportDataManager {
-    private(set) var weeklyUsage: [DailyUsage] = [] {
-        didSet {
-            delegate?.reportDataDidUpdate(weeklyUsage)
-        }
-    }
-    
     private let persistenceManager: PersistenceManager
-    private weak var delegate: ReportDataManagerDelegate?
     private let calendar = Calendar.current
+    private(set) var weeklyUsage: [DailyUsage] = []
+    weak var delegate: ReportDataManagerDelegate?
     
     init(persistenceManager: PersistenceManager, delegate: ReportDataManagerDelegate?) {
         self.persistenceManager = persistenceManager
         self.delegate = delegate
         loadWeeklyData()
+        print("DEBUG - Initial weeklyUsage after init: \(weeklyUsage)")
     }
     
     func logUsage(totalDuration: TimeInterval, remainingTime: TimeInterval) {
-        let timeSpent = max(totalDuration - remainingTime, 0)
+        print("DEBUG - ReportDataManager - logUsage START")
+        print("DEBUG - Total duration received: \(totalDuration)")
+        
         let today = Date()
-        
-        // Check if we need to reset (new week started)
-        if shouldResetWeeklyData(today) {
-            weeklyUsage.removeAll()
-        }
-        
-        let newUsage = DailyUsage(date: calendar.startOfDay(for: today), duration: timeSpent)
+        let todayStart = calendar.startOfDay(for: today)
         
         if let index = weeklyUsage.firstIndex(where: { calendar.isDate($0.date, inSameDayAs: today) }) {
-            weeklyUsage[index] = newUsage
+            print("DEBUG - Found existing entry for today")
+            print("DEBUG - Previous duration: \(weeklyUsage[index].duration)")
+            weeklyUsage[index] = DailyUsage(date: todayStart, duration: totalDuration)
+            print("DEBUG - Updated duration: \(totalDuration)")
         } else {
-            weeklyUsage.append(newUsage)
+            print("DEBUG - Creating new entry for today")
+            weeklyUsage.append(DailyUsage(date: todayStart, duration: totalDuration))
+            print("DEBUG - New entry duration: \(totalDuration)")
         }
         
+        print("DEBUG - About to save weeklyUsage: \(weeklyUsage)")
         saveWeeklyData()
+        
+        // Verify save
+        loadWeeklyData()
+        print("DEBUG - After save verification - weeklyUsage: \(weeklyUsage)")
+        
         NotificationCenter.default.post(name: .usageStatsDidUpdate, object: nil)
     }
     
-    private func shouldResetWeeklyData(_ today: Date) -> Bool {
-        guard let oldestDate = weeklyUsage.map({ $0.date }).min() else {
-            return false
-        }
-        
-        // Get the start of the week for both dates
-        let todayWeekStart = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today))
-        let oldestWeekStart = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: oldestDate))
-        
-        return todayWeekStart != oldestWeekStart
-    }
-    
     private func loadWeeklyData() {
+        print("DEBUG - loadWeeklyData START")
         if let data = persistenceManager.load([[String: Any]].self, forKey: AppConfiguration.UserDefaultsKeys.weekUsageReport) {
+            print("DEBUG - Raw data loaded: \(data)")
             weeklyUsage = data.compactMap { dict in
-                guard let timeInterval = dict["date"] as? TimeInterval,
-                    let duration = dict["duration"] as? TimeInterval else {
+                guard let timestamp = dict["date"] as? TimeInterval,
+                      let duration = dict["duration"] as? TimeInterval else {
+                    print("DEBUG - Failed to parse dict: \(dict)")
                     return nil
                 }
-                let date = Date(timeIntervalSince1970: timeInterval)
-                return DailyUsage(date: calendar.startOfDay(for: date), duration: duration)
+                let date = Date(timeIntervalSince1970: timestamp)
+                let usage = DailyUsage(date: calendar.startOfDay(for: date), duration: duration)
+                print("DEBUG - Parsed usage: \(usage)")
+                return usage
             }
+            print("DEBUG - Final parsed weeklyUsage: \(weeklyUsage)")
+        } else {
+            print("DEBUG - No data found in UserDefaults")
+            weeklyUsage = []
         }
     }
     
-    private func saveWeeklyData() {
+    public func saveWeeklyData() {
+        print("DEBUG - saveWeeklyData START")
         let data = weeklyUsage.map { usage -> [String: Any] in
-            return [
+            let dict = [
                 "date": usage.date.timeIntervalSince1970,
                 "duration": usage.duration
             ]
+            print("DEBUG - Converting usage to dict: \(dict)")
+            return dict
         }
+        print("DEBUG - Final data to save: \(data)")
         persistenceManager.save(data, forKey: AppConfiguration.UserDefaultsKeys.weekUsageReport)
     }
 } 

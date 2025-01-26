@@ -7,26 +7,44 @@ struct AppState: Codable {
     let lastActiveDate: Date
 }
 
-extension AppState: DataStorable {
-    static var storageKey: String { return "app_state" }
-}
-
 class AppStateModel {
-    private let dataStore: DataStoreModel
+    private let persistenceManager: PersistenceManager
     
-    init(dataStore: DataStoreModel = DataStoreModel()) {
-        self.dataStore = dataStore
+    init(persistenceManager: PersistenceManager = UserDefaultsManager()) {
+        self.persistenceManager = persistenceManager
     }
     
     func saveAppState(_ state: AppState) {
-        try? dataStore.save(state)
+        print("DEBUG - AppStateModel: Saving state using PersistenceManager")
+        persistenceManager.save(state.isTimerActive, forKey: "isTimerActive")
+        persistenceManager.save(state.remainingTime, forKey: "remainingTime")
+        persistenceManager.save(state.totalTimeSpent, forKey: "totalTimeSpent")
+        persistenceManager.save(state.lastActiveDate, forKey: "lastActiveDate")
     }
     
     func loadAppState() -> AppState? {
-        try? dataStore.load(AppState.self)
+        print("DEBUG - AppStateModel: Loading state from PersistenceManager")
+        guard let isTimerActive: Bool = persistenceManager.load(Bool.self, forKey: "isTimerActive"),
+              let remainingTime: TimeInterval = persistenceManager.load(TimeInterval.self, forKey: "remainingTime"),
+              let totalTimeSpent: TimeInterval = persistenceManager.load(TimeInterval.self, forKey: "totalTimeSpent"),
+              let lastActiveDate: Date = persistenceManager.load(Date.self, forKey: "lastActiveDate") else {
+            print("DEBUG - AppStateModel: Failed to load state")
+            return nil
+        }
+        
+        return AppState(
+            isTimerActive: isTimerActive,
+            remainingTime: remainingTime,
+            totalTimeSpent: totalTimeSpent,
+            lastActiveDate: lastActiveDate
+        )
     }
     
     func clearAppState() {
-        try? dataStore.delete(AppState.self)
+        print("DEBUG - AppStateModel: Clearing state")
+        persistenceManager.remove(forKey: "isTimerActive")
+        persistenceManager.remove(forKey: "remainingTime")
+        persistenceManager.remove(forKey: "totalTimeSpent")
+        persistenceManager.remove(forKey: "lastActiveDate")
     }
 } 

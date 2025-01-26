@@ -14,17 +14,16 @@ final class SurfingViewController: UIViewController {
     // MARK: - Properties
     private let containerView: SurfingContainerView
     private let buttonsController: ButtonsController
-    private let timerController: TimerController
+    var timerController: TimerController
     private let webContentController: WebContentController
     private let analyticsModel: AnalyticsModel
     private let activityTracker: ActivityTracker
     private let timerPickerController: TimerPickerController
-    private let dataManager: DataManager
     private let shareController: ShareController
     
     // MARK: - Public Properties
     var isTimerActive: Bool {
-        return timerController.isActive
+        return timerController.isTimerActive
     }
     
     var remainingTime: TimeInterval {
@@ -50,7 +49,6 @@ final class SurfingViewController: UIViewController {
         self.timerController = dependencies.timerController
         self.webContentController = dependencies.webContentController
         self.analyticsModel = dependencies.analyticsModel
-        self.dataManager = dependencies.dataManager
         self.timerPickerController = dependencies.timerPickerController
         self.activityTracker = ActivityTracker(analyticsModel: dependencies.analyticsModel)
         self.shareController = ShareController(webContentModel: webContentController.webContentModel, delegate: nil)
@@ -179,28 +177,33 @@ final class SurfingViewController: UIViewController {
     }
     
     func pauseTimer() {
-        if timerController.isActive {
+        if timerController.isTimerActive {
             timerController.pauseTimer()
         }
+    }
+    
+    private func setupTimerController() {
+        timerController.delegate = self
+        print("DEBUG - SurfingViewController: Timer controller setup complete")
     }
 }
 
 // MARK: - ButtonsControllerDelegate
 extension SurfingViewController: ButtonsControllerDelegate {
     func buttonsControllerDidRequestBack() {
-        if timerController.isActive && timerController.remainingTime > 0 {
+        if timerController.isTimerActive && timerController.remainingTime > 0 {
             webContentController.goBack()
         }
     }
     
     func buttonsControllerDidRequestHome() {
-        if timerController.isActive && timerController.remainingTime > 0 {
+        if timerController.isTimerActive && timerController.remainingTime > 0 {
             webContentController.loadHomePage()
         }
     }
     
     func buttonsControllerDidRequestRefresh() {
-        if timerController.isActive && timerController.remainingTime > 0 {
+        if timerController.isTimerActive && timerController.remainingTime > 0 {
             webContentController.reload()
         }
     }
@@ -214,7 +217,7 @@ extension SurfingViewController: ButtonsControllerDelegate {
     }
     
     func buttonsControllerDidRequestTimerPicker() {
-        if timerController.isActive {
+        if timerController.isTimerActive {
             if timerController.remainingTime > 0 {
                 AlertManager.showTimeSetAlert(on: self)
             } else {
@@ -230,21 +233,37 @@ extension SurfingViewController: ButtonsControllerDelegate {
 
 // MARK: - TimerControllerDelegate
 extension SurfingViewController: TimerControllerDelegate {
-    func timerDidUpdate(hours: Int, minutes: Int, seconds: Int) {
-        let remainingTime = TimeInterval(hours * 3600 + minutes * 60 + seconds)
-        webContentController.updateRemainingTime(remainingTime, totalSpent: timerController.totalTimeSpent)
+    func timerDidStart() {
+        print("DEBUG - SurfingViewController: Timer started")
+        updateUIState(isTimerActive: true)
+        webContentController.updateContent(timerActive: true, timerExpired: false)
     }
     
-    func timerDidStart(duration: TimeInterval) {
-        analyticsModel.trackEvent(.timerSet(duration: duration))
-        activityTracker.startTracking()
-        containerView.showTimerPicker(false)
+    func timerDidPause() {
+        print("DEBUG - SurfingViewController: Timer paused")
+        updateUIState(isTimerActive: false)
+    }
+    
+    func timerDidResume() {
+        print("DEBUG - SurfingViewController: Timer resumed")
+        updateUIState(isTimerActive: true)
+    }
+    
+    func timerDidStop() {
+        print("DEBUG - SurfingViewController: Timer stopped")
+        updateUIState(isTimerActive: false)
+        webContentController.updateContent(timerActive: false, timerExpired: true)
     }
     
     func timerDidEnd() {
-        webContentController.updateRemainingTime(0, totalSpent: timerController.totalTimeSpent)
-        analyticsModel.trackEvent(.timerExpired)
-        activityTracker.stopTracking()
+        print("DEBUG - SurfingViewController: Timer ended")
+        updateUIState(isTimerActive: false)
+        webContentController.updateContent(timerActive: false, timerExpired: true)
+    }
+    
+    func timerDidUpdate(remainingTime: TimeInterval, totalTimeSpent: TimeInterval) {
+        print("DEBUG - SurfingViewController: Timer updated - Remaining: \(remainingTime), Total spent: \(totalTimeSpent)")
+        webContentController.updateRemainingTime(remainingTime, totalSpent: totalTimeSpent)
     }
 }
 
@@ -252,7 +271,7 @@ extension SurfingViewController: TimerControllerDelegate {
 extension SurfingViewController: WebContentControllerDelegate {
     func webContentControllerDidFinishLoading() {
         analyticsModel.trackEvent(.webContentLoaded)
-        updateUIState(isTimerActive: timerController.isActive)
+        updateUIState(isTimerActive: timerController.isTimerActive)
     }
     
     func webContentControllerDidFailLoading(with error: Error) {

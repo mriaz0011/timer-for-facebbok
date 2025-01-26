@@ -11,11 +11,8 @@
 		CE28EC6D2CF7333600A66FD6 /* AnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE28EC6B2CF7333600A66FD6 /* AnalyticsEvent.swift */; };
 		CE28EC6E2CF7333600A66FD6 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE28EC6C2CF7333600A66FD6 /* AppError.swift */; };
 		CE28EC702CF7352500A66FD6 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE28EC6F2CF7352500A66FD6 /* AlertManager.swift */; };
-		CEA2D0792CF00CF300973583 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0262CF00CF300973583 /* AppCoordinator.swift */; };
 		CEA2D07A2CF00CF300973583 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0272CF00CF300973583 /* MainCoordinator.swift */; };
 		CEA2D07D2CF00CF300973583 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D02C2CF00CF300973583 /* AppConfiguration.swift */; };
-		CEA2D07E2CF00CF300973583 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D02E2CF00CF300973583 /* DataManager.swift */; };
-		CEA2D07F2CF00CF300973583 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D02F2CF00CF300973583 /* CacheManager.swift */; };
 		CEA2D0802CF00CF300973583 /* AppLifecycleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0302CF00CF300973583 /* AppLifecycleManager.swift */; };
 		CEA2D0812CF00CF300973583 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0312CF00CF300973583 /* NotificationManager.swift */; };
 		CEA2D0822CF00CF300973583 /* ViewLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0322CF00CF300973583 /* ViewLayoutManager.swift */; };
@@ -27,11 +24,9 @@
 		CEA2D0892CF00CF300973583 /* ThemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D03A2CF00CF300973583 /* ThemeModel.swift */; };
 		CEA2D08A2CF00CF300973583 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D03B2CF00CF300973583 /* TimerState.swift */; };
 		CEA2D08B2CF00CF300973583 /* LocalizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D03C2CF00CF300973583 /* LocalizationModel.swift */; };
-		CEA2D08C2CF00CF300973583 /* DataStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D03D2CF00CF300973583 /* DataStoreModel.swift */; };
 		CEA2D08E2CF00CF300973583 /* WebContentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D03F2CF00CF300973583 /* WebContentState.swift */; };
 		CEA2D08F2CF00CF300973583 /* AccessibilityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0402CF00CF300973583 /* AccessibilityModel.swift */; };
 		CEA2D0902CF00CF300973583 /* SurfingViewControllerDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0412CF00CF300973583 /* SurfingViewControllerDependencies.swift */; };
-		CEA2D0912CF00CF300973583 /* PersistentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0422CF00CF300973583 /* PersistentModels.swift */; };
 		CEA2D0922CF00CF300973583 /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0432CF00CF300973583 /* TimerModel.swift */; };
 		CEA2D0932CF00CF300973583 /* AppStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0442CF00CF300973583 /* AppStateModel.swift */; };
 		CEA2D0942CF00CF300973583 /* WebContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0452CF00CF300973583 /* WebContentModel.swift */; };
@@ -41,7 +36,6 @@
 		CEA2D0982CF00CF300973583 /* TimeFormatterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0492CF00CF300973583 /* TimeFormatterModel.swift */; };
 		CEA2D0992CF00CF300973583 /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D04A2CF00CF300973583 /* ReportModel.swift */; };
 		CEA2D09A2CF00CF300973583 /* AnalyticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D04B2CF00CF300973583 /* AnalyticsModel.swift */; };
-		CEA2D09B2CF00CF300973583 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D04C2CF00CF300973583 /* ErrorModel.swift */; };
 		CEA2D09D2CF00CF300973583 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D04F2CF00CF300973583 /* Notification+Extensions.swift */; };
 		CEA2D09E2CF00CF300973583 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0502CF00CF300973583 /* Date+Extensions.swift */; };
 		CEA2D09F2CF00CF300973583 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2D0522CF00CF300973583 /* Logger.swift */; };
@@ -95,11 +89,8 @@
 		CE28EC6B2CF7333600A66FD6 /* AnalyticsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsEvent.swift; sourceTree = "<group>"; };
 		CE28EC6C2CF7333600A66FD6 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		CE28EC6F2CF7352500A66FD6 /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
-		CEA2D0262CF00CF300973583 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CEA2D0272CF00CF300973583 /* MainCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		CEA2D02C2CF00CF300973583 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
-		CEA2D02E2CF00CF300973583 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		CEA2D02F2CF00CF300973583 /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		CEA2D0302CF00CF300973583 /* AppLifecycleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLifecycleManager.swift; sourceTree = "<group>"; };
 		CEA2D0312CF00CF300973583 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		CEA2D0322CF00CF300973583 /* ViewLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewLayoutManager.swift; sourceTree = "<group>"; };
@@ -111,11 +102,9 @@
 		CEA2D03A2CF00CF300973583 /* ThemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeModel.swift; sourceTree = "<group>"; };
 		CEA2D03B2CF00CF300973583 /* TimerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
 		CEA2D03C2CF00CF300973583 /* LocalizationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationModel.swift; sourceTree = "<group>"; };
-		CEA2D03D2CF00CF300973583 /* DataStoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStoreModel.swift; sourceTree = "<group>"; };
 		CEA2D03F2CF00CF300973583 /* WebContentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentState.swift; sourceTree = "<group>"; };
 		CEA2D0402CF00CF300973583 /* AccessibilityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessibilityModel.swift; sourceTree = "<group>"; };
 		CEA2D0412CF00CF300973583 /* SurfingViewControllerDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurfingViewControllerDependencies.swift; sourceTree = "<group>"; };
-		CEA2D0422CF00CF300973583 /* PersistentModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentModels.swift; sourceTree = "<group>"; };
 		CEA2D0432CF00CF300973583 /* TimerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
 		CEA2D0442CF00CF300973583 /* AppStateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStateModel.swift; sourceTree = "<group>"; };
 		CEA2D0452CF00CF300973583 /* WebContentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentModel.swift; sourceTree = "<group>"; };
@@ -125,7 +114,6 @@
 		CEA2D0492CF00CF300973583 /* TimeFormatterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFormatterModel.swift; sourceTree = "<group>"; };
 		CEA2D04A2CF00CF300973583 /* ReportModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
 		CEA2D04B2CF00CF300973583 /* AnalyticsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsModel.swift; sourceTree = "<group>"; };
-		CEA2D04C2CF00CF300973583 /* ErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		CEA2D04F2CF00CF300973583 /* Notification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		CEA2D0502CF00CF300973583 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		CEA2D0522CF00CF300973583 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -208,10 +196,10 @@
 				CEA2D04E2CF00CF300973583 /* Extensions */,
 				CEA2D0512CF00CF300973583 /* Utilities */,
 				CEA2D0552CF00CF300973583 /* Factories */,
-				CEA2D05A2CF00CF300973583 /* AppDelegate.swift */,
 				CEA2D05B2CF00CF300973583 /* Controllers */,
 				CEA2D0662CF00CF300973583 /* Views */,
 				CEA2D0732CF00CF300973583 /* Protocols */,
+				CEA2D05A2CF00CF300973583 /* AppDelegate.swift */,
 				CEA2D0782CF00CF300973583 /* SceneDelegate.swift */,
 			);
 			path = "Facebook Time";
@@ -220,7 +208,6 @@
 		CEA2D0252CF00CF300973583 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				CEA2D0262CF00CF300973583 /* AppCoordinator.swift */,
 				CEA2D0272CF00CF300973583 /* MainCoordinator.swift */,
 			);
 			path = Coordinators;
@@ -239,8 +226,6 @@
 			children = (
 				CE17B05F2CF13734005F9FE4 /* PersistenceManager.swift */,
 				CEA2D0C32CF0133800973583 /* LifecycleManager.swift */,
-				CEA2D02E2CF00CF300973583 /* DataManager.swift */,
-				CEA2D02F2CF00CF300973583 /* CacheManager.swift */,
 				CEA2D0302CF00CF300973583 /* AppLifecycleManager.swift */,
 				CEA2D0312CF00CF300973583 /* NotificationManager.swift */,
 				CEA2D0322CF00CF300973583 /* ViewLayoutManager.swift */,
@@ -260,11 +245,9 @@
 				CEA2D03A2CF00CF300973583 /* ThemeModel.swift */,
 				CEA2D03B2CF00CF300973583 /* TimerState.swift */,
 				CEA2D03C2CF00CF300973583 /* LocalizationModel.swift */,
-				CEA2D03D2CF00CF300973583 /* DataStoreModel.swift */,
 				CEA2D03F2CF00CF300973583 /* WebContentState.swift */,
 				CEA2D0402CF00CF300973583 /* AccessibilityModel.swift */,
 				CEA2D0412CF00CF300973583 /* SurfingViewControllerDependencies.swift */,
-				CEA2D0422CF00CF300973583 /* PersistentModels.swift */,
 				CEA2D0432CF00CF300973583 /* TimerModel.swift */,
 				CEA2D0442CF00CF300973583 /* AppStateModel.swift */,
 				CEA2D0452CF00CF300973583 /* WebContentModel.swift */,
@@ -274,7 +257,6 @@
 				CEA2D0492CF00CF300973583 /* TimeFormatterModel.swift */,
 				CEA2D04A2CF00CF300973583 /* ReportModel.swift */,
 				CEA2D04B2CF00CF300973583 /* AnalyticsModel.swift */,
-				CEA2D04C2CF00CF300973583 /* ErrorModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -458,7 +440,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA2D0A82CF00CF300973583 /* SurfingViewController.swift in Sources */,
-				CEA2D09B2CF00CF300973583 /* ErrorModel.swift in Sources */,
 				CEA2D0802CF00CF300973583 /* AppLifecycleManager.swift in Sources */,
 				CEA2D0BA2CF00CF300973583 /* WebContentView.swift in Sources */,
 				CEA2D0B22CF00CF300973583 /* TimerPickerView.swift in Sources */,
@@ -470,7 +451,6 @@
 				CEA2D0A22CF00CF300973583 /* ViewFactory.swift in Sources */,
 				CEA2D0A42CF00CF300973583 /* ViewControllerFactory.swift in Sources */,
 				CEA2D0B12CF00CF300973583 /* SurfingContainerView.swift in Sources */,
-				CEA2D07E2CF00CF300973583 /* DataManager.swift in Sources */,
 				CEA2D0972CF00CF300973583 /* TimerPickerModel.swift in Sources */,
 				CEA2D0AD2CF00CF300973583 /* ShareController.swift in Sources */,
 				CEA2D0BE2CF00CF300973583 /* AppLifecycleManagerDelegate.swift in Sources */,
@@ -486,14 +466,11 @@
 				CEA2D07D2CF00CF300973583 /* AppConfiguration.swift in Sources */,
 				CEA2D0C02CF00CF300973583 /* SceneDelegate.swift in Sources */,
 				CEA2D0A32CF00CF300973583 /* AlertFactory.swift in Sources */,
-				CEA2D0912CF00CF300973583 /* PersistentModels.swift in Sources */,
 				CEA2D0852CF00CF300973583 /* ThemeManager.swift in Sources */,
 				CEA2D0B02CF00CF300973583 /* ButtonsController.swift in Sources */,
 				CEA2D0872CF00CF300973583 /* ReportDataManager.swift in Sources */,
-				CEA2D08C2CF00CF300973583 /* DataStoreModel.swift in Sources */,
 				CEA2D0862CF00CF300973583 /* WebViewManager.swift in Sources */,
 				CEA2D0AB2CF00CF300973583 /* WebContentController.swift in Sources */,
-				CEA2D0792CF00CF300973583 /* AppCoordinator.swift in Sources */,
 				CEA2D0AA2CF00CF300973583 /* LifecycleController.swift in Sources */,
 				CEA2D0A12CF00CF300973583 /* ActivityTracker.swift in Sources */,
 				CEA2D0922CF00CF300973583 /* TimerModel.swift in Sources */,
@@ -513,7 +490,6 @@
 				CEA2D0822CF00CF300973583 /* ViewLayoutManager.swift in Sources */,
 				CEA2D0992CF00CF300973583 /* ReportModel.swift in Sources */,
 				CEA2D0BC2CF00CF300973583 /* AppLifecycleDelegate.swift in Sources */,
-				CEA2D07F2CF00CF300973583 /* CacheManager.swift in Sources */,
 				CEA2D0C22CF010A400973583 /* Coordinator.swift in Sources */,
 				CE28EC6D2CF7333600A66FD6 /* AnalyticsEvent.swift in Sources */,
 				CEA2D0902CF00CF300973583 /* SurfingViewControllerDependencies.swift in Sources */,

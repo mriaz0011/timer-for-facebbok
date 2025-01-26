@@ -54,7 +54,7 @@ class TimerView: UIView {
     // MARK: - Setup UI Elements
     
     private func setupView() {
-        backgroundColor =  AppConfiguration.UI.Colors.navigationBar
+        backgroundColor = AppConfiguration.UI.Colors.timerBackground
         
         addSubview(clockLabel)
         addSubview(remainingTimeLabel)

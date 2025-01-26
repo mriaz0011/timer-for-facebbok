@@ -1,22 +1,24 @@
 import UIKit
 
 protocol TimerControllerDelegate: AnyObject {
-    func timerDidUpdate(hours: Int, minutes: Int, seconds: Int)
+    func timerDidStart()
+    func timerDidPause()
+    func timerDidResume()
+    func timerDidStop()
     func timerDidEnd()
-    func timerDidStart(duration: TimeInterval)
+    func timerDidUpdate(remainingTime: TimeInterval, totalTimeSpent: TimeInterval)
 }
 
 class TimerController: UIViewController {
     // MARK: - Properties
-    private let timerModel: TimerModel
-    private var dispatchTimer: DispatchSourceTimer?
     let timerView: TimerView
+    let timerModel: TimerModel
+    private let reportDataManager: ReportDataManager
+    private var dispatchTimer: DispatchSourceTimer?
     weak var delegate: TimerControllerDelegate?
     
-    // ReportDataManager
-    private let reportDataManager: ReportDataManager
-
-    var isActive: Bool {
+    // Add computed properties
+    var isTimerActive: Bool {
         return timerModel.isActive
     }
     
@@ -25,18 +27,17 @@ class TimerController: UIViewController {
     }
     
     var totalTimeSpent: TimeInterval {
-        return timerModel.totalTimeSpent
+        return timerModel.getCurrentTimeSpent()
     }
     
     // MARK: - Initialization
-    init(timerModel: TimerModel, 
-         timerView: TimerView,
-         reportDataManager: ReportDataManager = ReportDataManager(persistenceManager: UserDefaults.standard, delegate: nil)) {
-        self.timerModel = timerModel
+    init(timerView: TimerView, timerModel: TimerModel, reportDataManager: ReportDataManager) {
         self.timerView = timerView
+        self.timerModel = timerModel
         self.reportDataManager = reportDataManager
         super.init(nibName: nil, bundle: nil)
         setupNotifications()
+        print("DEBUG - TimerController: Initialized")
     }
     
     required init?(coder: NSCoder) {
@@ -49,9 +50,10 @@ class TimerController: UIViewController {
     
     // MARK: - Timer Control Methods
     func startTimer(duration: TimeInterval) {
+        print("DEBUG - TimerController: Starting timer with duration \(duration)")
         timerModel.startTimer(duration: duration)
-        setupDispatchTimer()
-        delegate?.timerDidStart(duration: duration)
+        startDispatchTimer()  // This starts the periodic updates
+        delegate?.timerDidStart()
     }
     
     private func setupDispatchTimer() {
@@ -69,17 +71,39 @@ class TimerController: UIViewController {
                 return
             }
             
+            // Get current time components and remaining time separately
             let time = self.timerModel.updateRemainingTime()
-            self.delegate?.timerDidUpdate(hours: time.hours, minutes: time.minutes, seconds: time.seconds)
+            let remainingTime = self.timerModel.remainingTime
+            let totalTimeSpent = self.totalTimeSpent
+            
+            self.delegate?.timerDidUpdate(remainingTime: remainingTime, totalTimeSpent: totalTimeSpent)
             self.timerView.updateRemainingTimeLabel(hours: time.hours, minutes: time.minutes, seconds: time.seconds)
         }
         
         dispatchTimer?.resume()
     }
     
-    private func stopTimer() {
+    func pauseTimer() {
+        print("DEBUG - TimerController: Pausing timer")
+        timerModel.pauseTimer()
         dispatchTimer?.cancel()
         dispatchTimer = nil
+        delegate?.timerDidPause()
+    }
+    
+    func resumeTimer() {
+        print("DEBUG - TimerController: Resuming timer")
+        timerModel.resumeTimer()
+        startDispatchTimer()  // Restart periodic updates
+        delegate?.timerDidResume()
+    }
+    
+    func stopTimer() {
+        print("DEBUG - TimerController: Stopping timer")
+        timerModel.stopTimer()
+        dispatchTimer?.cancel()
+        dispatchTimer = nil
+        delegate?.timerDidStop()
     }
     
     // MARK: - App Lifecycle Notifications
@@ -90,8 +114,10 @@ class TimerController: UIViewController {
     
     @objc private func appDidEnterBackground() {
         if timerModel.isActive {
-            stopTimer() // Stop the dispatch timer only
-            timerModel.pauseTimer() // This will save the current remaining time
+            print("DEBUG - TimerController: Pausing timer in background")
+            timerModel.pauseTimer() // Only pause, don't stop
+            dispatchTimer?.cancel()  // Just cancel the UI updates
+            dispatchTimer = nil
         }
     }
 
@@ -109,21 +135,8 @@ class TimerController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func pauseTimer() {
-        dispatchTimer?.cancel()
-        dispatchTimer = nil
-        timerModel.pauseTimer()
-    }
-    
-    func resumeTimer() {
-        if timerModel.remainingTime > 0 {
-            timerModel.resumeTimer()
-            setupDispatchTimer()  // Changed from startDispatchTimer to setupDispatchTimer
-        }
-    }
-    
     func updateRemainingTime() -> (hours: Int, minutes: Int, seconds: Int) {
-        if isActive && !timerModel.isPaused {
+        if isTimerActive && !timerModel.isPaused {
             updateTimer()
         }
         
@@ -135,23 +148,44 @@ class TimerController: UIViewController {
     }
     
     private func updateTimer() {
-        guard timerModel.isActive, let start = timerModel.startTime else { return }
+        guard timerModel.isActive else { 
+            print("DEBUG - TimerController: Timer not active, skipping update")
+            return 
+        }
         
-        let elapsed = Date().timeIntervalSince(start) + timerModel.accumulatedTime
-        timerModel.remainingTime = max(0, timerModel.duration - elapsed)
+        // Update remaining time and get components
+        let time = timerModel.updateRemainingTime()
+        print("DEBUG - TimerController: Timer update - Remaining time: \(timerModel.remainingTime)")
         
-        if timerModel.remainingTime <= 0 {
-            // Log usage before stopping timer
+        if timerModel.remainingTime > 0 {
+            updateDisplay(hours: time.hours, minutes: time.minutes, seconds: time.seconds)
+            
+            // Get the current time spent and log it
+            let timeSpent = timerModel.getCurrentTimeSpent()
+            
+            // Always log usage on each timer update
             reportDataManager.logUsage(
-                totalDuration: timerModel.duration,
+                totalDuration: timeSpent,
                 remainingTime: timerModel.remainingTime
             )
+            
+            // Notify delegate of update
+            delegate?.timerDidUpdate(remainingTime: timerModel.remainingTime, totalTimeSpent: timeSpent)
+        } else {
+            print("DEBUG - TimerController: Timer reached zero")
             stopTimer()
+            delegate?.timerDidEnd()
+            timerView.displayTimeUp()
         }
     }
     
     private func updateDisplay(hours: Int, minutes: Int, seconds: Int) {
-        timerView.updateRemainingTimeLabel(hours: hours, minutes: minutes, seconds: seconds)
+        print("DEBUG - TimerController: Updating display - H:\(hours) M:\(minutes) S:\(seconds)")
+        if hours == 0 && minutes == 0 && seconds == 0 {
+            timerView.displayTimeUp()
+        } else {
+            timerView.updateRemainingTimeLabel(hours: hours, minutes: minutes, seconds: seconds)
+        }
     }
     
     // MARK: - Display Methods
@@ -167,23 +201,22 @@ class TimerController: UIViewController {
     // MARK: - Private Methods
     private func startDispatchTimer() {
         dispatchTimer?.cancel()
+        dispatchTimer = DispatchSource.makeTimerSource(queue: .main)
+        dispatchTimer?.schedule(deadline: .now(), repeating: .seconds(1))
         
-        let timer = DispatchSource.makeTimerSource(queue: .main)
-        timer.schedule(deadline: .now(), repeating: .seconds(1))
-        timer.setEventHandler { [weak self] in
+        dispatchTimer?.setEventHandler { [weak self] in
             self?.updateTimer()
         }
-        timer.resume()
         
-        dispatchTimer = timer
+        dispatchTimer?.resume()
     }
     
-    func getCurrentTimeComponents() -> (hours: Int, minutes: Int, seconds: Int) {
-        let remaining = timerModel.remainingTime
-        let hours = Int(remaining) / 3600
-        let minutes = Int(remaining) / 60 % 60
-        let seconds = Int(remaining) % 60
-        return (hours, minutes, seconds)
+    private func getCurrentTimeComponents() -> (hours: Int, minutes: Int, seconds: Int) {
+        let remainingTime = timerModel.remainingTime
+        let hours = Int(remainingTime) / 3600
+        let minutes = Int(remainingTime) / 60 % 60
+        let seconds = Int(remainingTime) % 60
+        return (hours: hours, minutes: minutes, seconds: seconds)
     }
     
     func isTimerSetForToday() -> Bool {
@@ -196,11 +229,26 @@ class TimerController: UIViewController {
     
     // MARK: - State Restoration
     func restoreTimer(remainingTime: TimeInterval, totalTimeSpent: TimeInterval) {
-        timerModel.restoreState(remainingTime: remainingTime, totalTimeSpent: totalTimeSpent)
+        print("DEBUG - TimerController: Restoring timer with remaining time: \(remainingTime), isActive: \(timerModel.isActive)")
         
-        // Don't start the timer automatically
-        if timerModel.isActive {
-            print("TimerController - Timer restored but not started yet")
+        if remainingTime > 0 {
+            // First update the model
+            timerModel.restoreTimer(remainingTime: remainingTime, totalTimeSpent: totalTimeSpent)
+            
+            // Update display with current remaining time
+            let time = timerModel.updateRemainingTime()
+            print("DEBUG - TimerController: Restored time components - H:\(time.hours) M:\(time.minutes) S:\(time.seconds)")
+            updateDisplay(hours: time.hours, minutes: time.minutes, seconds: time.seconds)
+            
+            // Resume the timer
+            if timerModel.isActive {
+                print("DEBUG - TimerController: Starting dispatch timer after restore")
+                startDispatchTimer()
+            }
+        } else {
+            print("DEBUG - TimerController: No remaining time on restore")
+            timerModel.stopTimer()
+            timerView.displayTimeUp()
         }
     }
     

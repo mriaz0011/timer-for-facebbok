@@ -13,7 +13,7 @@ enum AccessibilityIdentifier: String {
 enum AccessibilityLabel: String {
     case timerSetButton = "Set Timer"
     case timerLabel = "Remaining Time"
-    case webView = "Facebook Content"
+    case webView = "Content of Facebook"
     case backButton = "Go Back"
     case refreshButton = "Refresh Page"
     case shareButton = "Share"

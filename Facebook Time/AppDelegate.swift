@@ -8,11 +8,15 @@
 
 import UIKit
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    private var coordinator: MainCoordinator?
+    var coordinator: MainCoordinator?
+    private let reportDataManager = ReportDataManager(
+        persistenceManager: UserDefaultsManager(),
+        delegate: nil
+    )
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -33,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        coordinator?.appWillTerminate()
+        coordinator?.appDidEnterBackground()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -45,7 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Create a temporary AppStateModel to check the saved state
         let appStateModel = AppStateModel()
         if let appState = appStateModel.loadAppState(),
            appState.isTimerActive && appState.remainingTime > 0 {

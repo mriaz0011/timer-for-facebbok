@@ -52,8 +52,7 @@ class ReportViewController: UIViewController {
     }
     
     private func updateGraph() {
-        let reportData = UserDefaults.standard.dictionary(forKey: AppConfiguration.UserDefaultsKeys.weekUsageReport) as? [String: Double] ?? [:]
-        graphView.drawGraph(reportData: reportData)
+       reportController.refresh()
     }
     
     deinit {
@@ -61,6 +60,7 @@ class ReportViewController: UIViewController {
     }
     
     private func formatDataForGraph(_ dailyUsage: [Date: TimeInterval]) -> [String: Double] {
+        print("ReportViewController - Formatting data: \(dailyUsage)")
         var formattedData: [String: Double] = [:]
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE" // Full day name
@@ -68,6 +68,7 @@ class ReportViewController: UIViewController {
         for (date, duration) in dailyUsage {
             let dayName = dateFormatter.string(from: date)
             formattedData[dayName] = Double(duration)
+            print("ReportViewController - Day: \(dayName), Duration: \(duration)")
         }
         return formattedData
     }

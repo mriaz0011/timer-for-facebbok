@@ -24,10 +24,33 @@ struct AppConfiguration {
         static let TimerHeight: CGFloat = 50
         
         struct Colors {
-            static let navigationBar = UIColor.orange
-            static let background = UIColor.white
-            static let text = UIColor.black
-            static let border = UIColor.lightGray
+            // Primary Colors
+            static let primary = UIColor.orange
+            
+            // UI Elements
+            static let navigationBar = primary
+            static let background = UIColor.systemBackground
+            static let text = UIColor.label
+            static let border = UIColor.separator
+            
+            // Timer specific
+            static let timerBackground = primary
+            static let timerText = UIColor.white
+            static let clockText = UIColor.white
+            
+            // Picker specific
+            static let pickerBackground = UIColor.systemBackground
+            static let pickerText = primary
+            
+            // Button specific
+            static let buttonBackground = primary
+            static let buttonTint = UIColor.white
+            
+            // Web specific
+            static let webViewBackground = UIColor.systemBackground
+            
+            // Separator
+            static let separator = UIColor.separator
         }
     }
     

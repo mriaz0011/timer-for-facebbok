@@ -26,50 +26,50 @@ enum Theme {
     
     // MARK: - UI Colors
     var backgroundColor: UIColor {
-        return .white
+        return AppConfiguration.UI.Colors.background
     }
     
     var textColor: UIColor {
-        return .black
+        return AppConfiguration.UI.Colors.text
     }
     
     var navigationBarColor: UIColor {
-        return Theme.primaryOrange
+        return AppConfiguration.UI.Colors.navigationBar
     }
     
     var timerBackgroundColor: UIColor {
-        return Theme.primaryOrange
+        return AppConfiguration.UI.Colors.timerBackground
     }
     
     var buttonBackgroundColor: UIColor {
-        return Theme.primaryOrange
+        return AppConfiguration.UI.Colors.buttonBackground
     }
     
     var buttonTintColor: UIColor {
-        return .white
+        return AppConfiguration.UI.Colors.buttonTint
     }
     
     var separatorColor: UIColor {
-        return UIColor(white: 0.9, alpha: 1.0)
+        return AppConfiguration.UI.Colors.separator
     }
     
     var clockTextColor: UIColor {
-        return .white
+        return AppConfiguration.UI.Colors.clockText
     }
     
     var timerTextColor: UIColor {
-        return .white
+        return AppConfiguration.UI.Colors.timerText
     }
     
     var pickerBackgroundColor: UIColor {
-        return .white
+        return AppConfiguration.UI.Colors.pickerBackground
     }
     
     var pickerTextColor: UIColor {
-        return Theme.primaryOrange
+        return AppConfiguration.UI.Colors.pickerText
     }
     
     var webViewBackgroundColor: UIColor {
-        return .white
+        return AppConfiguration.UI.Colors.webViewBackground
     }
 }
